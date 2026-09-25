@@ -1,0 +1,29 @@
+/// Les 4 postes de la cascade, dans leur ordre d'affichage. Table déconnectée : aucune relation, les valeurs viennent de la mesure Part du poste.
+table Cascade_postes
+	lineageTag: 2c6df412-f403-4629-9650-43a245e9b2b5
+
+	column Ordre
+		lineageTag: 9c889bf2-3004-492e-9246-d7f915f4afc4
+		isNameInferred
+		sourceColumn: [Ordre]
+
+	column Poste
+		lineageTag: 641aa8b3-919e-49d3-ad70-94ddaf399dc4
+		isNameInferred
+		sourceColumn: [Poste]
+		sortByColumn: Ordre
+
+	partition Cascade_postes = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Ordre", INTEGER,
+				    "Poste", STRING,
+				    {
+				        { 1, "À l'heure" },
+				        { 2, "En avance" },
+				        { 3, "En retard" },
+				        { 4, "Non retrouvé" }
+				    }
+				)
+

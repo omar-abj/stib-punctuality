@@ -1,0 +1,168 @@
+table dim_ligne
+	lineageTag: e56b205e-9c81-4ca9-b06a-cbd59c41b889
+
+	column ligne_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3a61e672-7f09-4b4f-b8b0-4423a94e4173
+		summarizeBy: none
+		sourceColumn: ligne_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_id
+		dataType: string
+		lineageTag: ba3b3828-5ba6-4974-8eaf-453cc011ad28
+		summarizeBy: none
+		sourceColumn: line_id
+		sortByColumn: ordre_ligne
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column route_long_name
+		dataType: string
+		lineageTag: 8701eac1-54cf-412a-b8bf-acd02a0c1030
+		summarizeBy: none
+		sourceColumn: route_long_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column route_type
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 75cbd36b-4dd8-457c-8de5-d975515b9ceb
+		summarizeBy: none
+		sourceColumn: route_type
+
+		annotation SummarizationSetBy = User
+
+	column mode_reel
+		dataType: string
+		isHidden
+		lineageTag: eb152e85-f720-4a1c-9d88-c102c117f744
+		summarizeBy: none
+		sourceColumn: mode_reel
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_remplacement
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9d1ae2b5-64c8-4939-8db4-b8697847e1b2
+		summarizeBy: none
+		sourceColumn: est_remplacement
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode_remplace
+		dataType: string
+		lineageTag: 615d6944-4564-4a27-ac9c-dfdce39ab834
+		summarizeBy: none
+		sourceColumn: mode_remplace
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_noctis
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 464bd372-b8f6-4318-a723-edaa5c2bf072
+		summarizeBy: none
+		sourceColumn: est_noctis
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_feeds
+		dataType: int64
+		formatString: 0
+		lineageTag: 01bb77d1-b78b-4340-a22d-fdfd6a765664
+		summarizeBy: none
+		sourceColumn: nb_feeds
+
+		annotation SummarizationSetBy = User
+
+	column feed_premier
+		dataType: string
+		lineageTag: a79cd4cd-2dcf-4871-b500-b616fcbf4638
+		summarizeBy: none
+		sourceColumn: feed_premier
+
+		annotation SummarizationSetBy = Automatic
+
+	column feed_dernier
+		dataType: string
+		lineageTag: c56121e0-7367-4517-bf0f-985026487ae4
+		summarizeBy: none
+		sourceColumn: feed_dernier
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_dans_perimetre
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4a2ddf3d-a0c7-440d-9955-7ae7d2c97875
+		summarizeBy: none
+		sourceColumn: est_dans_perimetre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dans_classement
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ac4fced3-11a3-4e65-8620-b5e159dc2937
+		summarizeBy: none
+		sourceColumn: dans_classement
+
+		annotation SummarizationSetBy = Automatic
+
+	column motif_exclusion
+		dataType: string
+		lineageTag: 0e887afd-ba4c-49d2-a8c2-9d31e52246da
+		summarizeBy: none
+		sourceColumn: motif_exclusion
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_ligne
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e5d7724-72f7-4a58-bc63-2d26c76f3ad9
+		summarizeBy: none
+		sourceColumn: ordre_ligne
+
+		annotation SummarizationSetBy = User
+
+	/// Ordre d'affichage des modes : 1 Métro, 2 Tram, 3 Bus (ajouté dans Power Query).
+	column 'Ordre mode'
+		dataType: int64
+		isHidden
+		lineageTag: f412729d-fe26-461e-a330-71dd47116234
+		summarizeBy: none
+		sourceColumn: Ordre mode
+
+	/// Libellé du mode (ajouté dans Power Query à partir de route_type GTFS : 0 tram, 1 métro, 3 bus).
+	column Mode
+		dataType: string
+		lineageTag: 79bddd38-4bd5-41a5-a6ae-40336df96a83
+		sourceColumn: Mode
+		sortByColumn: 'Ordre mode'
+
+	partition dim_ligne = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_ligne"]}[Data],
+				  #"Ajout Mode" = Table.AddColumn(#"Navigation 2", "Mode", each if [route_type] = 1 then "Métro" else if [route_type] = 0 then "Tram" else if [route_type] = 3 then "Bus" else null, type text),
+				  #"Ajout Ordre mode" = Table.AddColumn(#"Ajout Mode", "Ordre mode", each if [route_type] = 1 then 1 else if [route_type] = 0 then 2 else if [route_type] = 3 then 3 else null, Int64.Type)
+				in
+				  #"Ajout Ordre mode"
+
+	annotation PBI_ResultType = Table
+

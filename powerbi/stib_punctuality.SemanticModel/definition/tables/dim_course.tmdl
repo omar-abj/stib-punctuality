@@ -1,0 +1,174 @@
+table dim_course
+	lineageTag: f53fd74c-d004-4a19-8a38-e723f0d53699
+
+	column course_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d775e30b-a745-4973-9c50-f3e5d2bd194f
+		summarizeBy: none
+		sourceColumn: course_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column feed_version
+		dataType: string
+		lineageTag: a46e4a2d-8ee4-4c21-b011-3d0ad26b66cb
+		summarizeBy: none
+		sourceColumn: feed_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column trip_id
+		dataType: string
+		lineageTag: 9bf47e07-265e-4e65-9681-4dcd481df2c2
+		summarizeBy: none
+		sourceColumn: trip_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_id
+		dataType: string
+		lineageTag: 4d76dab5-bd7a-4f0c-8e24-7e62d61df4e5
+		summarizeBy: none
+		sourceColumn: line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column direction_id
+		dataType: string
+		lineageTag: fa310b06-6090-44f6-ad2a-d9af2ed2deb2
+		summarizeBy: none
+		sourceColumn: direction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column trip_headsign
+		dataType: string
+		lineageTag: e1cf62e2-760a-4126-98ce-1159e598a00a
+		summarizeBy: none
+		sourceColumn: trip_headsign
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_arrets
+		dataType: int64
+		formatString: 0
+		lineageTag: bfb31e5f-b0e7-4b86-983a-479cd1746c31
+		summarizeBy: none
+		sourceColumn: nb_arrets
+
+		annotation SummarizationSetBy = Automatic
+
+	column depart_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 264c712e-0aef-4817-b1d1-77a9f499d8cb
+		summarizeBy: none
+		sourceColumn: depart_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column arrivee_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 02396d1e-b448-4ef1-8d24-f5a2bd161ca2
+		summarizeBy: none
+		sourceColumn: arrivee_sec
+
+		annotation SummarizationSetBy = Automatic
+
+	column duree_min
+		dataType: int64
+		formatString: 0
+		lineageTag: dc4939c3-a2ed-47a7-ad74-87429eb4d41d
+		summarizeBy: none
+		sourceColumn: duree_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_debut
+		dataType: int64
+		formatString: 0
+		lineageTag: 09f056c2-6e5e-41e8-8b50-1bde55a14587
+		summarizeBy: none
+		sourceColumn: ordre_debut
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_fin
+		dataType: int64
+		formatString: 0
+		lineageTag: f08f771d-3283-4c39-abab-54817967cf1a
+		summarizeBy: none
+		sourceColumn: ordre_fin
+
+		annotation SummarizationSetBy = Automatic
+
+	column demarre_au_terminus
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e174b980-b35f-46d8-bd3f-61302651ea7e
+		summarizeBy: none
+		sourceColumn: demarre_au_terminus
+
+		annotation SummarizationSetBy = Automatic
+
+	column finit_au_terminus
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b1919d03-0a6f-4e20-a024-2a45b91ca6de
+		summarizeBy: none
+		sourceColumn: finit_au_terminus
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_parcours_complet
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 61bbe20a-c56c-4de9-bf15-326209131402
+		summarizeBy: none
+		sourceColumn: est_parcours_complet
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_variante
+		dataType: int64
+		formatString: 0
+		lineageTag: 717d4d48-8875-4977-b727-69167700e31c
+		summarizeBy: none
+		sourceColumn: num_variante
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_courses_variante
+		dataType: int64
+		formatString: 0
+		lineageTag: 9120a1eb-6fa3-4822-b363-90701fa4b0e2
+		summarizeBy: none
+		sourceColumn: nb_courses_variante
+
+		annotation SummarizationSetBy = Automatic
+
+	column signature
+		dataType: string
+		lineageTag: dbdb6ef8-08b2-40e3-abb3-06831fb3ed52
+		summarizeBy: none
+		sourceColumn: signature
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_course = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_course"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

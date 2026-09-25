@@ -1,0 +1,36 @@
+table dim_direction
+	lineageTag: fc51baed-ea21-4160-809d-96af6875c974
+
+	column direction_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5c7e1bff-493a-4dba-b1cb-88e70c01411c
+		summarizeBy: none
+		sourceColumn: direction_id
+
+		annotation SummarizationSetBy = User
+
+	column libelle
+		dataType: string
+		lineageTag: f5b1d072-ae6a-43d6-b402-057c6a33fad6
+		summarizeBy: none
+		sourceColumn: libelle
+		sortByColumn: direction_id
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_direction = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_direction"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

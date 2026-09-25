@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "f7ca73f2707769a8c6a6",
+  "position": {
+    "x": 24,
+    "y": 56,
+    "z": 1000,
+    "height": 24,
+    "width": 1232,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Le jour de la semaine et l'heure de la matinée ne l'expliquent presque pas",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "11pt",
+                      "color": "#5b6775"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "587fb02fa90362e113a6",
+  "position": {
+    "x": 24.867075664621677,
+    "y": 482.29038854805725,
+    "z": 12000,
+    "height": 237.54601226993864,
+    "width": 528.09815950920245,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_arret"
+                    }
+                  },
+                  "Property": "stop_name"
+                }
+              },
+              "queryRef": "dim_arret.stop_name",
+              "nativeQueryRef": "Arrêt",
+              "displayName": "Arrêt"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_ligne"
+                    }
+                  },
+                  "Property": "line_id"
+                }
+              },
+              "queryRef": "dim_ligne.line_id",
+              "nativeQueryRef": "Ligne",
+              "displayName": "Ligne"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Passages théoriques"
+                }
+              },
+              "queryRef": "_Mesures.Passages théoriques",
+              "nativeQueryRef": "Passages théoriques"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Valeur indicateur"
+                }
+              },
+              "queryRef": "_Mesures.Valeur indicateur",
+              "nativeQueryRef": "Indicateur",
+              "displayName": "Indicateur"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Écart au réseau (indicateur)"
+                }
+              },
+              "queryRef": "_Mesures.Écart au réseau (indicateur)",
+              "nativeQueryRef": "Écart au réseau",
+              "displayName": "Écart au réseau"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Mesures"
+                  }
+                },
+                "Property": "Écart au réseau (indicateur)"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1b77827e972307da0de0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Mesures"
+              }
+            },
+            "Property": "Passages théoriques"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Mesures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "_"
+                        }
+                      },
+                      "Property": "Passages théoriques"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "100L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

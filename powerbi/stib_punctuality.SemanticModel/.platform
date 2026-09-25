@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "stib_punctuality"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1b9366be-178c-490a-8593-61b1a44b0592"
+  }
+}

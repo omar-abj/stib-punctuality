@@ -1,0 +1,46 @@
+/// Tranches d'effet propre (en points) pour l'histogramme de la page Arrêts. Table déconnectée : borne basse incluse, borne haute exclue.
+table Tranches_effet
+	lineageTag: 4b29e99d-abcd-47b2-b93a-2c0538063bb6
+
+	column Ordre
+		lineageTag: 3c2f96ce-a594-459d-b0da-9ff79814f431
+		isNameInferred
+		sourceColumn: [Ordre]
+
+	column Tranche
+		lineageTag: 3129ffee-5eee-49c4-a0a5-03a48bd44c4c
+		isNameInferred
+		sourceColumn: [Tranche]
+
+	column 'Borne basse'
+		lineageTag: 6eedc8b9-eb66-4d22-9998-a583162d65c3
+		isNameInferred
+		sourceColumn: [Borne basse]
+
+	column 'Borne haute'
+		lineageTag: d6f33f4c-3742-4004-a9b0-4a43a4823f02
+		isNameInferred
+		sourceColumn: [Borne haute]
+
+	partition Tranches_effet = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Ordre", INTEGER,
+				    "Tranche", STRING,
+				    "Borne basse", DOUBLE,
+				    "Borne haute", DOUBLE,
+				    {
+				        { 1, "-20 et moins", -1000, -20 },
+				        { 2, "-20 à -15",    -20,   -15 },
+				        { 3, "-15 à -10",    -15,   -10 },
+				        { 4, "-10 à -5",     -10,    -5 },
+				        { 5, "-5 à 0",        -5,     0 },
+				        { 6, "0 à +5",         0,     5 },
+				        { 7, "+5 à +10",       5,    10 },
+				        { 8, "+10 à +15",     10,    15 },
+				        { 9, "+15 à +20",     15,    20 },
+				        { 10, "+20 et plus",  20,  1000 }
+				    }
+				)
+

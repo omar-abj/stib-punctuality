@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ad0f84a32b735c1b5704",
+  "position": {
+    "x": 24,
+    "y": 460,
+    "z": 6000,
+    "height": 236,
+    "width": 480,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "À retenir",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "12pt",
+                      "color": "#1f2a37"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Tram et bus perdent surtout en avance (19,9 % et 18,9 %), bien plus qu'en retard.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "12pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "La ligne de bus 78 (85,2 %) fait mieux que les métros 2 et 6.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "12pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Les quatre lignes les moins ponctuelles sont des bus (37, 20, 96, 65), toutes au moins 19 points sous la moyenne.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "12pt",
+                      "color": "#333333"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

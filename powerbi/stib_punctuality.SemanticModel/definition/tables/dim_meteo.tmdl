@@ -1,0 +1,180 @@
+table dim_meteo
+	lineageTag: b8a3f3f8-0765-4853-a685-c716838c8d83
+
+	column meteo_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 981ed693-1e3e-4267-9080-e8c5b7b3bd49
+		summarizeBy: none
+		sourceColumn: meteo_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_locale
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9dca502f-1f9d-4809-b9de-9a0c2137223f
+		summarizeBy: none
+		sourceColumn: date_locale
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column heure
+		dataType: int64
+		formatString: 0
+		lineageTag: 83d62a7e-926a-4ead-9ac9-0b97f69b3340
+		summarizeBy: none
+		sourceColumn: heure
+
+		annotation SummarizationSetBy = User
+
+	column temperature
+		dataType: double
+		lineageTag: b557753e-07a3-4c95-981a-ca62c4e13b2c
+		summarizeBy: none
+		sourceColumn: temperature
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column temp_ressentie
+		dataType: double
+		lineageTag: 23a0e27c-4459-4acb-adf0-1ba9d6dae53f
+		summarizeBy: none
+		sourceColumn: temp_ressentie
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column humidite
+		dataType: double
+		lineageTag: 8d18424f-52ac-4942-99d0-c35c2e3f056f
+		summarizeBy: none
+		sourceColumn: humidite
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column precipitation
+		dataType: double
+		lineageTag: 651ae793-85d3-4cc2-987d-b02cc9ae5ebf
+		summarizeBy: none
+		sourceColumn: precipitation
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pluie
+		dataType: double
+		lineageTag: cc76f737-37cc-401f-b583-4cdf00fd06cf
+		summarizeBy: none
+		sourceColumn: pluie
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column a_averse_convective
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0d59776b-28ec-4fd6-b079-49eb9c28a5ec
+		summarizeBy: none
+		sourceColumn: a_averse_convective
+
+		annotation SummarizationSetBy = Automatic
+
+	column neige
+		dataType: double
+		lineageTag: 6dbe4fe6-5348-4e4f-9f15-0ec9b69ec396
+		summarizeBy: none
+		sourceColumn: neige
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column code_wmo
+		dataType: int64
+		formatString: 0
+		lineageTag: 6694e09b-fda8-4046-8646-757a5511ac99
+		summarizeBy: none
+		sourceColumn: code_wmo
+
+		annotation SummarizationSetBy = User
+
+	column vent
+		dataType: double
+		lineageTag: 2e626da8-5547-4680-91c6-136c2653f68a
+		summarizeBy: none
+		sourceColumn: vent
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rafales
+		dataType: double
+		lineageTag: a21a5e38-5156-43aa-a37c-84ffec4ea696
+		summarizeBy: none
+		sourceColumn: rafales
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nuages
+		dataType: double
+		lineageTag: 8560d6a9-c592-4b6d-8f00-a27b760d7603
+		summarizeBy: none
+		sourceColumn: nuages
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column classe_pluie
+		dataType: string
+		lineageTag: a2b85d1c-2dfd-44d5-afb9-d026b63530a5
+		summarizeBy: none
+		sourceColumn: classe_pluie
+
+		annotation SummarizationSetBy = Automatic
+
+	column classe_temp
+		dataType: string
+		lineageTag: d31f7115-bb86-41d9-908a-a9daee767d13
+		summarizeBy: none
+		sourceColumn: classe_temp
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_inconnu
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 61260173-af04-49f7-8802-8564bb008e2e
+		summarizeBy: none
+		sourceColumn: est_inconnu
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_meteo = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_meteo"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

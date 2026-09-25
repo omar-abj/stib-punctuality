@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "7a3aacb380e42de65d17",
+  "displayName": "Explorer",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9a7e29c376c554309508",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_ligne"
+              }
+            },
+            "Property": "line_id"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough",
+        "isHiddenInViewMode": true
+      },
+      {
+        "name": "0ca232732dc90e08066c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_arret"
+              }
+            },
+            "Property": "stop_name"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "e7b9b47b24aa58d0ab02",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "70db809eb66475bc63a0",
+        "boundFilter": "9a7e29c376c554309508",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_ligne"
+              }
+            },
+            "Property": "line_id"
+          }
+        }
+      },
+      {
+        "name": "20dcf9ca30ba73d06940",
+        "boundFilter": "0ca232732dc90e08066c",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_arret"
+              }
+            },
+            "Property": "stop_name"
+          }
+        }
+      }
+    ]
+  }
+}

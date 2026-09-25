@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "02328d107c71e2a1ceb5",
+  "position": {
+    "x": 540,
+    "y": 132,
+    "z": 5000,
+    "height": 24,
+    "width": 400,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "■ Métro",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "11px",
+                      "color": "#6a4c93"
+                    }
+                  },
+                  {
+                    "value": "  ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "11px",
+                      "color": "#1f2a37"
+                    }
+                  },
+                  {
+                    "value": "■ Tram",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "11px",
+                      "color": "#2e8b7a"
+                    }
+                  },
+                  {
+                    "value": "  ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "11px",
+                      "color": "#1f2a37"
+                    }
+                  },
+                  {
+                    "value": "■ Bus",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
+                      "fontSize": "11px",
+                      "color": "#4f5d75"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,23 @@
+# --- Power BI --------------------------------------------------------------
+# Le .pbix embarque les donnees du modele (~90 Mo) : jamais dans le depot.
+*.pbix
+# Cache de donnees du projet .pbip et reglages propres a la machine
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+
+
+# --- Secrets ---------------------------------------------------------------
+.env
+
+# --- Donnees -----------------------------------------------------------------
+# Sauvegardes SQL Server et fichiers sources (GTFS, Excel, CSV)
+*.bak
+data/
+*.zip
+*.xlsx
+*.csv
+
+# --- Python ----------------------------------------------------------------
+__pycache__/
+.ipynb_checkpoints/
+.venv/

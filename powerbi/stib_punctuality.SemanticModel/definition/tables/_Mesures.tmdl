@@ -1,0 +1,522 @@
+/// Table de mesures : regroupe tous les KPI du rapport. Ne contient aucune donnee.
+table _Mesures
+	lineageTag: a3b45a88-e76b-434d-a47d-8dd3a6254bef
+
+	/// Passages annoncés par l'horaire et observables : le dénominateur de tous les taux.
+	measure 'Passages théoriques' = SUM ( fact_ecart[nb_theorique] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: 936c230b-e59f-46c8-ada2-24eb67821901
+
+	/// Passages reconstitués depuis le flux temps réel (après filtres de qualité).
+	measure 'Passages réels' = SUM ( fact_ecart[nb_reel] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: d1f9ca61-91bb-47c2-a676-874f50b82c63
+
+	/// Passages théoriques pour lesquels un passage réel a été retrouvé dans la tolérance de la ligne.
+	measure 'Passages appariés' = SUM ( fact_ecart[nb_apparie] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: c80d16fc-6b67-494d-9e10-9177f10c2d67
+
+	/// Passages appariés dans la fenêtre -60 / +180 s.
+	measure 'Passages conformes' = SUM ( fact_ecart[nb_conforme] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: db75217b-7e84-45cf-bf3e-b2c75083a84f
+
+	/// Passages appariés plus de 60 s avant l'horaire.
+	measure 'Passages en avance' = SUM ( fact_ecart[nb_avance] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: 6190aea2-1c15-4df9-b982-9e3aede350e8
+
+	/// Passages appariés plus de 180 s après l'horaire.
+	measure 'Passages en retard' = SUM ( fact_ecart[nb_retard] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: 413c0a1f-d256-4a2b-9da4-f3585eabea9f
+
+	/// Passages théoriques sans aucun passage réel retrouvé dans la tolérance.
+	measure 'Passages non appariés' = SUM ( fact_ecart[nb_theo_seul] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: 64910957-5565-482f-ad01-f756bed427d6
+
+	/// Passages réels sans horaire correspondant. Hors dénominateur.
+	measure 'Réels non appariés' = SUM ( fact_ecart[nb_reel_seul] )
+		formatString: #,0
+		displayFolder: 1. Compteurs
+		lineageTag: 26b6e4cd-16f8-44e2-8ae7-7c15fe1d4ead
+
+	/// KPI principal : part du service annoncé réalisée dans la fenêtre -60 / +180 s.
+	measure 'Taux de conformité' = DIVIDE ( [Passages conformes], [Passages théoriques] )
+		formatString: 0.00 %
+		displayFolder: 2. Taux
+		lineageTag: 522def82-5647-4149-b15c-d9235a0d5ee8
+
+	/// Couverture : part du service annoncé pour laquelle un écart est mesurable. Dépend de la tolérance : ne pas comparer entre lignes.
+	measure 'Taux d''appariement' = DIVIDE ( [Passages appariés], [Passages théoriques] )
+		formatString: 0.00 %
+		displayFolder: 2. Taux
+		lineageTag: ef0b3c9e-bcf6-45c6-936f-5b73350b782d
+
+	/// Poste 2 de la cascade.
+	measure 'Part en avance' = DIVIDE ( [Passages en avance], [Passages théoriques] )
+		formatString: 0.00 %
+		displayFolder: 2. Taux
+		lineageTag: 859e065d-6638-4445-896b-fdb1c11f8559
+
+	/// Poste 3 de la cascade.
+	measure 'Part en retard' = DIVIDE ( [Passages en retard], [Passages théoriques] )
+		formatString: 0.00 %
+		displayFolder: 2. Taux
+		lineageTag: fb057733-d21e-4fd5-9863-39d0a34db278
+
+	/// Poste 4 de la cascade.
+	measure 'Part non appariée' = DIVIDE ( [Passages non appariés], [Passages théoriques] )
+		formatString: 0.00 %
+		displayFolder: 2. Taux
+		lineageTag: 6a47c6e4-fbda-4889-8511-d9b138d3c442
+
+	/// Doit valoir 0 sous n'importe quel filtre. Outil de vérification, pas à afficher dans le rapport.
+	measure 'Contrôle cascade' = [Passages conformes] + [Passages en avance] + [Passages en retard] + [Passages non appariés] - [Passages théoriques]
+		formatString: #,0
+		displayFolder: 9. Contrôles
+		lineageTag: 4af0c5bc-05d7-4a42-bf16-c5f61ff6845b
+
+	/// Rang de l'arrêt sur la ligne filtrée. Sert uniquement à trier les axes par ordre géographique (piège n°74 : le rang dépend du couple ligne-arrêt).
+	measure 'Rang corridor' = MIN ( dim_desserte[ordre_corridor] )
+		formatString: 0
+		displayFolder: 8. Tri
+		lineageTag: 6753d71b-cadd-472f-ac76-8317f0ce993c
+
+	/// Part du théorique pour le poste affiché (table Cascade_postes). Les 4 parts somment à 100 %.
+	measure 'Part du poste' =
+			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Ordre] )
+			RETURN
+			    SWITCH (
+			        _ordre,
+			        1, [Taux de conformité],
+			        2, [Part en avance],
+			        3, [Part en retard],
+			        4, [Part non appariée]
+			    )
+		formatString: 0.0 %
+		displayFolder: 3. Cascade
+		lineageTag: 608c2217-135a-4962-be21-43011ff8e9a0
+
+	/// Nombre de passages théoriques du poste affiché (pour les info-bulles).
+	measure 'Passages du poste' =
+			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Ordre] )
+			RETURN
+			    SWITCH (
+			        _ordre,
+			        1, [Passages conformes],
+			        2, [Passages en avance],
+			        3, [Passages en retard],
+			        4, [Passages non appariés]
+			    )
+		formatString: #,0
+		displayFolder: 3. Cascade
+		lineageTag: 04e5cf6d-d3ee-43bf-9612-feb97de1f0e0
+
+	/// Couleur du poste, à utiliser en mise en forme conditionnelle (valeur du champ). Identique au thème STIB - Signal.
+	measure 'Couleur du poste' =
+			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Ordre] )
+			RETURN
+			    SWITCH (
+			        _ordre,
+			        1, "#1D6FA3",
+			        2, "#E0A100",
+			        3, "#C8433A",
+			        4, "#9AA5B1"
+			    )
+		displayFolder: 3. Cascade
+		lineageTag: 54f3e360-7848-4d94-86dc-abb80e6349fb
+
+	/// Lignes ayant au moins un passage théorique dans le contexte de filtre.
+	measure 'Lignes analysées' =
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_ecart[ligne_sk] ),
+			    fact_ecart[nb_theorique] = 1
+			)
+		formatString: 0
+		displayFolder: 4. Périmètre
+		lineageTag: 90a3bfeb-01d5-49ed-a375-c9c9ef209b11
+
+	/// Jours de service présents dans le contexte de filtre.
+	measure 'Jours analysés' = DISTINCTCOUNT ( fact_ecart[date_sk] )
+		formatString: 0
+		displayFolder: 4. Périmètre
+		lineageTag: 25909a0a-c3b9-4dd5-93fc-80fa0f9e6504
+
+	/// Taux de conformité de l'ensemble du réseau, quels que soient les filtres sur les lignes et les modes. Référence fixe pour les comparaisons (64,64 % sans autre filtre).
+	measure 'Conformité réseau' =
+			
+			CALCULATE (
+			    [Taux de conformité],
+			    REMOVEFILTERS ( dim_ligne ),
+			    REMOVEFILTERS ( dim_direction )
+			)
+		formatString: 0.00 %
+		displayFolder: 5. Comparaison des lignes
+		lineageTag: 7c9725a3-b07e-4c07-ac3f-b4e876bd13be
+
+	/// Écart de conformité à la moyenne réseau, en points de pourcentage. Positif : la ligne fait mieux que le réseau.
+	measure 'Écart au réseau' = ( [Taux de conformité] - [Conformité réseau] ) * 100
+		formatString: +0.0 " pts";-0.0 " pts";0.0 " pts"
+		displayFolder: 5. Comparaison des lignes
+		lineageTag: 70db4564-82a4-474c-bebb-09de4a9a439b
+
+	/// Rang de la ligne sur la conformité parmi les lignes affichées (1 = la plus ponctuelle). ordre_ligne est inclus car line_id est trié par cette colonne.
+	measure 'Rang conformité' =
+			IF (
+			    HASONEVALUE ( dim_ligne[line_id] ),
+			    RANKX (
+			        ALLSELECTED ( dim_ligne[line_id], dim_ligne[ordre_ligne] ),
+			        [Taux de conformité],
+			        ,
+			        DESC
+			    )
+			)
+		formatString: 0
+		displayFolder: 5. Comparaison des lignes
+		lineageTag: 2ae729ae-7294-4ce3-80e3-77fcad0efcb7
+
+	/// Couleur du mode de la ligne affichée (métro violet, tram vert d'eau, bus ardoise). Distincte des couleurs de la cascade, qui codent un statut.
+	measure 'Couleur mode' =
+			SWITCH (
+			    SELECTEDVALUE ( dim_ligne[route_type] ),
+			    1, "#6A4C93",
+			    0, "#2E8B7A",
+			    3, "#4F5D75"
+			)
+		displayFolder: 5. Comparaison des lignes
+		lineageTag: e1f5da9a-f73c-4cd7-802c-d2af94bd3050
+
+	/// Nombre de lignes du classement (71), indépendamment des filtres sur les lignes. Sert à écrire « 12e sur 71 ».
+	measure 'Lignes classées' =
+			CALCULATE (
+			    DISTINCTCOUNT ( dim_ligne[line_id] ),
+			    REMOVEFILTERS ( dim_ligne ),
+			    dim_ligne[dans_classement] = TRUE ()
+			)
+		formatString: 0
+		displayFolder: 5. Comparaison des lignes
+		lineageTag: 49fd4923-e327-47e2-a8d5-adca7d251d70
+
+	/// Rang de la ligne sélectionnée parmi les 71 lignes classées, même quand un segment n'en affiche qu'une (contrairement à Rang conformité). Vide si la ligne est hors classement.
+	measure 'Rang réseau' =
+			VAR _ligne = SELECTEDVALUE ( dim_ligne[line_id] )
+			VAR _taux = [Taux de conformité]
+			VAR _classees =
+			    CALCULATETABLE (
+			        ADDCOLUMNS ( VALUES ( dim_ligne[line_id] ), "@taux", [Taux de conformité] ),
+			        REMOVEFILTERS ( dim_ligne ),
+			        dim_ligne[dans_classement] = TRUE ()
+			    )
+			VAR _est_classee = NOT ISEMPTY ( FILTER ( _classees, dim_ligne[line_id] = _ligne ) )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _ligne ) && _est_classee,
+			        COUNTROWS ( FILTER ( _classees, [@taux] > _taux ) ) + 1
+			    )
+		formatString: 0
+		displayFolder: 5. Comparaison des lignes
+		lineageTag: 18fecf97-fe30-443d-9d2d-2fa5a60b3fcc
+
+	/// Taux de conformité, laissé vide sous 200 passages théoriques : évite qu'un arrêt peu desservi s'affiche en rouge ou en vert par hasard (petits effectifs).
+	measure 'Conformité arrêt (fiable)' =
+			IF (
+			    [Passages théoriques] >= 200,
+			    [Taux de conformité]
+			)
+		formatString: 0.0 %
+		displayFolder: 6. Zoom ligne
+		lineageTag: 6bd83f2a-89c2-4818-a0a4-d3ed7237d1fd
+
+	/// Rang géographique de l'arrêt dans int_profil_arret (ligne et sens filtrés). Sert à trier l'axe du profil ; même logique que Rang corridor.
+	measure 'Ordre profil' = MIN ( int_profil_arret[ordre_geo] )
+		formatString: 0
+		displayFolder: 8. Tri
+		lineageTag: f5a6f8a9-28ee-4774-8c0a-c814869a9032
+
+	/// Titre dynamique de la page Zoom ligne. Le taux et le rang tiennent compte du sens sélectionné.
+	measure 'Titre zoom' =
+			
+			VAR _ligne = SELECTEDVALUE ( dim_ligne[line_id] )
+			VAR _taux = CALCULATE ( [Taux de conformité], REMOVEFILTERS ( dim_direction ) )
+			VAR _rang = CALCULATE ( [Rang réseau], REMOVEFILTERS ( dim_direction ) )
+			RETURN
+			    IF (
+			        ISBLANK ( _ligne ),
+			        "Choisissez une ligne",
+			        "Ligne " & _ligne & " : " & FORMAT ( _taux, "0.0 %" ) & " à l'heure"
+			            & IF (
+			                ISBLANK ( _rang ),
+			                " (hors classement)",
+			                ", " & _rang & IF ( _rang = 1, "re", "e" ) & " sur " & [Lignes classées]
+			            )
+			    )
+		displayFolder: 6. Zoom ligne
+		lineageTag: c66903d6-303b-4654-b6bf-5f21bcfec94f
+
+	/// Écart médian (s) entre durée réelle et durée prévue d'un tronçon, au grain du tronçon. Ne garde que les tronçons entre arrêts consécutifs (saut_de_rang <= 10) et observés sur au moins 100 courses ; vide sinon, jamais additionné.
+	measure 'Delta médian tronçon' =
+			VAR _t =
+			    FILTER (
+			        int_segment,
+			        int_segment[saut_de_rang] <= 10
+			            && int_segment[n_courses] >= 100
+			    )
+			RETURN
+			    IF ( COUNTROWS ( _t ) = 1, MAXX ( _t, int_segment[delta_median] ) )
+		formatString: +0 " s";-0 " s";0 " s"
+		displayFolder: 6. Zoom ligne
+		lineageTag: 48991f90-6235-48a2-872f-0064e110ece3
+
+	/// Premier et dernier arrêt du parcours pour la ligne et le sens sélectionnés (d'après int_profil_arret). Rend lisible le libellé générique aller / retour.
+	measure Parcours =
+			
+			VAR _ligne = SELECTEDVALUE ( dim_ligne[line_id] )
+			VAR _sens = SELECTEDVALUE ( dim_direction[direction_id] )
+			VAR _vers =
+			    MAXX (
+			        TOPN (
+			            1,
+			            FILTER (
+			                ADDCOLUMNS ( VALUES ( dim_course[trip_headsign] ), "@n", [Passages théoriques] ),
+			                [@n] > 0
+			            ),
+			            [@n], DESC
+			        ),
+			        dim_course[trip_headsign]
+			    )
+			VAR _de =
+			    MAXX (
+			        TOPN (
+			            1,
+			            CALCULATETABLE (
+			                FILTER (
+			                    ADDCOLUMNS ( VALUES ( dim_course[trip_headsign] ), "@n", [Passages théoriques] ),
+			                    [@n] > 0
+			                ),
+			                REMOVEFILTERS ( dim_direction ),
+			                dim_direction[direction_id] = 1 - _sens
+			            ),
+			            [@n], DESC
+			        ),
+			        dim_course[trip_headsign]
+			    )
+			RETURN
+			    IF (
+			        ISBLANK ( _ligne ) || ISBLANK ( _sens ) || ISBLANK ( _vers ),
+			        "Choisissez une ligne et un sens",
+			        "De " & _de & " vers " & _vers
+			    )
+		displayFolder: 6. Zoom ligne
+		lineageTag: f46034d1-1073-404c-813c-3d7ad668e1a2
+
+	measure 'Arrêt habituel' =
+			
+			VAR _n = SUM ( int_profil_arret[n_passages] )
+			VAR _max = MAXX ( ALLSELECTED ( int_profil_arret ), int_profil_arret[n_passages] )
+			RETURN IF ( _n >= 0.1 * _max, 1, 0 )
+		formatString: 0
+		displayFolder: 6. Zoom ligne
+		lineageTag: 42a1564c-4066-455c-ad98-4a20fab04bef
+
+	/// Part des passages théoriques appariés avec un écart compris entre -X et +X secondes, X étant la tolérance affichée (table Sensibilite_tolerance). Même dénominateur que le Taux de conformité.
+	measure 'Conformité à tolérance' =
+			
+			VAR _x = SELECTEDVALUE ( Sensibilite_tolerance[Tolérance (s)] )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _x ),
+			        DIVIDE (
+			            CALCULATE (
+			                SUM ( fact_ecart[nb_apparie] ),
+			                fact_ecart[retard_sec] >= -_x && fact_ecart[retard_sec] <= _x
+			            ),
+			            [Passages théoriques]
+			        )
+			    )
+		formatString: 0.0 %
+		displayFolder: 7. Méthode
+		lineageTag: 7dff6a81-fd89-46de-834a-c0c0c4b22e7f
+
+	/// Part de chaque cause dans les passages non appariés (416 343 sur 52 jours).
+	measure 'Part des non-appariés' =
+			DIVIDE (
+			    SUM ( diag_non_apparies[nb_passages] ),
+			    CALCULATE ( SUM ( diag_non_apparies[nb_passages] ), REMOVEFILTERS ( diag_non_apparies ) )
+			)
+		formatString: 0.0 %
+		displayFolder: 7. Méthode
+		lineageTag: b535a31f-5a88-43ea-97e7-69d27d7efe6d
+
+	measure 'Couleur nature' =
+			
+			SWITCH (
+			    SELECTEDVALUE ( diag_non_apparies[cause_nature] ),
+			    "Service", "#4F5D75",
+			    "#9AA5B1"
+			)
+		displayFolder: 7. Méthode
+		lineageTag: 20b78be6-310e-4819-b7ff-d3f5c6a9643d
+
+	/// Taux de conformité recalculé sur les 7 jours qui se terminent à la date affichée. Moyenne pondérée (conformes / théoriques sur toute la fenêtre), pas moyenne de 7 taux. Fenêtre incomplète au début de la période.
+	measure 'Conformité 7 jours' =
+			CALCULATE (
+			    [Taux de conformité],
+			    DATESINPERIOD ( dim_date[date_service], MAX ( dim_date[date_service] ), -7, DAY )
+			)
+		formatString: 0.0 %
+		displayFolder: 10. Temporel
+		lineageTag: d1da6415-352c-43d6-a000-1827e2edcb2d
+
+	/// Valeur de l'indicateur choisi dans Choix_indicateur (conformité par défaut). Vide sous 100 passages théoriques : sur un petit effectif, une case colorerait au hasard.
+	measure 'Valeur indicateur' =
+			VAR _ordre = SELECTEDVALUE ( Choix_indicateur[Ordre], 1 )
+			VAR _valeur =
+			    SWITCH (
+			        _ordre,
+			        1, [Taux de conformité],
+			        2, [Part en avance],
+			        3, [Part en retard],
+			        4, [Part non appariée]
+			    )
+			RETURN
+			    IF ( [Passages théoriques] >= 100, _valeur )
+		formatString: 0.0 %
+		displayFolder: 11. Explorer
+		lineageTag: aa692828-03d1-4f69-8e1e-90b9140b3b4b
+
+	/// Écart, en points, entre la valeur de la case et celle du réseau entier pour le même indicateur (filtres de période conservés).
+	measure 'Écart au réseau (indicateur)' =
+			VAR _case = [Valeur indicateur]
+			VAR _reseau =
+			    CALCULATE (
+			        [Valeur indicateur],
+			        REMOVEFILTERS ( dim_ligne ),
+			        REMOVEFILTERS ( dim_direction ),
+			        REMOVEFILTERS ( dim_heure ),
+			        REMOVEFILTERS ( dim_arret ),
+			        REMOVEFILTERS ( dim_desserte )
+			    )
+			RETURN
+			    IF ( NOT ISBLANK ( _case ), ( _case - _reseau ) * 100 )
+		formatString: +0.0 " pts";-0.0 " pts";0.0 " pts"
+		displayFolder: 11. Explorer
+		lineageTag: efeefa6c-95fc-49ec-b389-358e1932cb18
+
+	/// Couleur de la case : bleu si la case fait mieux que le réseau, rouge si elle fait moins bien, gris si l'écart est inférieur à 2 points. Le sens est inversé pour les indicateurs où une valeur élevée est mauvaise (avance, retard, non retrouvé).
+	measure 'Couleur case' =
+			VAR _ecart = [Écart au réseau (indicateur)]
+			VAR _sens = SELECTEDVALUE ( Choix_indicateur[Sens favorable], 1 )
+			VAR _oriente = _ecart * _sens
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ISBLANK ( _ecart ), "#F3F5F7",
+			        _oriente >= 5, "#1D6FA3",
+			        _oriente >= 2, "#7FB3D5",
+			        _oriente > -2, "#D9DEE3",
+			        _oriente > -5, "#E8A6A1",
+			        "#C8433A"
+			    )
+		displayFolder: 11. Explorer
+		lineageTag: 8c831b1d-d738-4929-9864-723dc3baed9d
+
+	/// Conformité attendue à l'arrêt compte tenu des lignes qui le desservent : conformité de chaque ligne sur tout son parcours, pondérée par ses passages à cet arrêt. Référence « si l'arrêt n'avait aucun effet propre ».
+	measure 'Conformité attendue (arrêt)' =
+			VAR _total = [Passages théoriques]
+			VAR _pondere =
+			    SUMX (
+			        VALUES ( dim_ligne[line_id] ),
+			        [Passages théoriques]
+			            * CALCULATE (
+			                [Taux de conformité],
+			                REMOVEFILTERS ( dim_arret ),
+			                REMOVEFILTERS ( dim_desserte )
+			            )
+			    )
+			RETURN
+			    DIVIDE ( _pondere, _total )
+		formatString: 0.0 %
+		displayFolder: 12. Arrêts
+		lineageTag: e2470905-4f36-4815-ae40-8962de5e8be2
+
+	/// Écart en points entre la conformité observée à l'arrêt et celle attendue d'après les lignes qui y passent. Négatif : l'arrêt fait moins bien que ses lignes ailleurs. Vide sous 200 passages.
+	measure 'Effet propre de l''arrêt' =
+			
+			VAR _couverture = DIVIDE ( [Passages appariés], [Passages théoriques] )
+			RETURN
+			    IF (
+			        [Passages théoriques] >= 200 && _couverture >= 0.5,
+			        ( [Taux de conformité] - [Conformité attendue (arrêt)] ) * 100
+			    )
+		formatString: +0.0 " pts";-0.0 " pts";0.0 " pts"
+		displayFolder: 12. Arrêts
+		lineageTag: 0dd966e8-4c0f-4632-b74b-8dd1cff63303
+
+	/// Nombre de lignes desservant l'arrêt affiché (colonne SQL nb_lignes_arret). Sert d'axe au nuage de points.
+	measure 'Lignes à l''arrêt' =
+			
+			CALCULATE (
+			    MAX ( dim_arret[nb_lignes_arret] ),
+			    ALLEXCEPT ( dim_arret, dim_arret[stop_name] )
+			)
+		formatString: 0
+		displayFolder: 12. Arrêts
+		lineageTag: 25916a80-a5d3-4efa-a355-d296b7d8cd00
+
+	/// Nombre d'arrêts dont l'effet propre tombe dans la tranche affichée (table Tranches_effet). Les arrêts non évalués (moins de 200 passages ou moins de 50 % d'appariement) ne sont comptés nulle part.
+	measure 'Arrêts dans la tranche' =
+			VAR _basse = SELECTEDVALUE ( Tranches_effet[Borne basse] )
+			VAR _haute = SELECTEDVALUE ( Tranches_effet[Borne haute] )
+			VAR _arrets =
+			    ADDCOLUMNS (
+			        VALUES ( dim_arret[stop_name] ),
+			        "@effet", [Effet propre de l'arrêt]
+			    )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( _basse ),
+			        COUNTROWS (
+			            FILTER (
+			                _arrets,
+			                NOT ISBLANK ( [@effet] )
+			                    && [@effet] >= _basse
+			                    && [@effet] < _haute
+			            )
+			        )
+			    )
+		formatString: #,0
+		displayFolder: 12. Arrêts
+		lineageTag: e2fe414e-918c-4ceb-b7cb-260ba8a90dc6
+
+	/// Nombre d'arrêts évalués (effet propre non vide) dans le contexte courant.
+	measure 'Arrêts évalués' =
+			COUNTROWS (
+			    FILTER (
+			        ADDCOLUMNS ( VALUES ( dim_arret[stop_name] ), "@effet", [Effet propre de l'arrêt] ),
+			        NOT ISBLANK ( [@effet] )
+			    )
+			)
+		formatString: #,0
+		displayFolder: 12. Arrêts
+		lineageTag: 89ae9ce9-3a22-4ae6-9e03-79cb5fe90c7b
+
+	column _
+		isHidden
+		lineageTag: f73d62b9-2ba9-41bc-9893-fcaee16129d4
+		isNameInferred
+		sourceColumn: [_]
+
+	partition _Mesures = calculated
+		mode: import
+		source = ROW ( "_", BLANK () )
+

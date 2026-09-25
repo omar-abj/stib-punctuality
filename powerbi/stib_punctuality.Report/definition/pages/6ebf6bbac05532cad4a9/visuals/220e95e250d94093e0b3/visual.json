@@ -1,0 +1,228 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "220e95e250d94093e0b3",
+  "position": {
+    "x": 24.867075664621677,
+    "y": 147.89366053169735,
+    "z": 2003,
+    "height": 482.94478527607362,
+    "width": 480.32719836400821,
+    "tabOrder": 2003
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_arret"
+                    }
+                  },
+                  "Property": "stop_name"
+                }
+              },
+              "queryRef": "dim_arret.stop_name",
+              "nativeQueryRef": "Arrêt",
+              "displayName": "Arrêt"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Lignes à l'arrêt"
+                }
+              },
+              "queryRef": "_Mesures.Lignes à l'arrêt",
+              "nativeQueryRef": "Lignes",
+              "displayName": "Lignes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Taux de conformité"
+                }
+              },
+              "queryRef": "_Mesures.Taux de conformité",
+              "nativeQueryRef": "Conformité",
+              "displayName": "Conformité"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Part en avance"
+                }
+              },
+              "queryRef": "_Mesures.Part en avance",
+              "nativeQueryRef": "Avance",
+              "displayName": "Avance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Effet propre de l'arrêt"
+                }
+              },
+              "queryRef": "_Mesures.Effet propre de l'arrêt",
+              "nativeQueryRef": "Effet propre",
+              "displayName": "Effet propre"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_arret"
+                  }
+                },
+                "Property": "stop_name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "_Mesures.Effet propre de l'arrêt"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Mesures.Effet propre de l'arrêt"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "11f2160f8e50ac1a2270",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_arret"
+              }
+            },
+            "Property": "stop_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e9dc6fa06e67a47555dc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Mesures"
+              }
+            },
+            "Property": "Lignes à l'arrêt"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a724fb0c84aab3085162",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Mesures"
+              }
+            },
+            "Property": "Taux de conformité"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2c0d1e47c9a00620c595",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Mesures"
+              }
+            },
+            "Property": "Part en avance"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "65d9abc5633e65cd20d1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Mesures"
+              }
+            },
+            "Property": "Effet propre de l'arrêt"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

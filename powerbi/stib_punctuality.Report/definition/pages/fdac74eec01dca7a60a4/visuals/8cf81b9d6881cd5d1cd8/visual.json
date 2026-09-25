@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "8cf81b9d6881cd5d1cd8",
+  "position": {
+    "x": 95.541922290388555,
+    "y": 194.35582822085891,
+    "z": 5000,
+    "height": 29.447852760736197,
+    "width": 532.678936605317,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "■"
+                  },
+                  {
+                    "value": "Service : aucun véhicule n'est passé       ",
+                    "textStyle": {
+                      "color": "#4f5d75"
+                    }
+                  },
+                  {
+                    "value": "■ Méthode : limite de la chaîne de traitement",
+                    "textStyle": {
+                      "color": "#9aa5b1"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

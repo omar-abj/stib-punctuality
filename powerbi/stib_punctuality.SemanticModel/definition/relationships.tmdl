@@ -1,0 +1,62 @@
+relationship be664757-a920-437b-9fe8-534f54a3eea7
+	fromColumn: fact_ecart.arret_sk
+	toColumn: dim_arret.arret_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship d4bde029-4336-41f8-8e88-6d008595ddd9
+	fromColumn: fact_ecart.course_sk
+	toColumn: dim_course.course_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3a424d72-6123-4cdb-839a-08f9d4c91bcb
+	fromColumn: fact_ecart.date_sk
+	toColumn: dim_date.date_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship 6766442f-ea3d-48e3-ab72-33fadfb99e82
+	fromColumn: fact_ecart.desserte_sk
+	toColumn: dim_desserte.desserte_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship 716c4485-106c-49cd-a85e-c131eb276e08
+	fromColumn: fact_ecart.heure_sk
+	toColumn: dim_heure.heure_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship febac661-fd0b-4fa7-bbff-dc8a46b93a0b
+	fromColumn: fact_ecart.ligne_sk
+	toColumn: dim_ligne.ligne_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3d027730-fbfa-41bb-a6e1-d2f414ef7ca8
+	fromColumn: fact_ecart.meteo_sk
+	toColumn: dim_meteo.meteo_sk
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5b6df837-8dcd-c206-2253-566f97586e5b
+	fromColumn: int_profil_arret.line_id
+	toColumn: dim_ligne.line_id
+
+relationship 10f5679c-2954-d6a0-c2fb-aa29c44076cb
+	fromColumn: int_segment.line_id
+	toColumn: dim_ligne.line_id
+
+relationship 34d57274-2ead-62be-af61-3c0adc0cc2d9
+	fromColumn: int_segment.direction_id
+	toColumn: dim_direction.direction_id
+
+relationship e2fe4b42-259e-4ce9-03e7-2aa4ab56dd24
+	fromColumn: int_profil_arret.direction_id
+	toColumn: dim_direction.direction_id
+
+relationship 9e2c9173-f1c7-674e-2c9a-10ef2758d665
+	fromColumn: fact_ecart.direction_id
+	toColumn: dim_direction.direction_id
+

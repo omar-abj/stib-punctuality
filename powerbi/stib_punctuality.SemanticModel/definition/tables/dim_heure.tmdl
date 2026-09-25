@@ -1,0 +1,103 @@
+table dim_heure
+	lineageTag: a13a19b0-26bf-4f1e-9347-e8c23f01e0d1
+
+	column heure_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7036c1a0-9ae8-482a-99fe-1ec08181a949
+		summarizeBy: none
+		sourceColumn: heure_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column libelle_creneau
+		dataType: string
+		lineageTag: cb8f36b7-e523-4cbd-990b-64980017ca69
+		summarizeBy: none
+		sourceColumn: libelle_creneau
+		sortByColumn: heure_sk
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column libelle_intervalle
+		dataType: string
+		lineageTag: f3b9f1e4-24ac-44dc-bb12-95379a26eaae
+		summarizeBy: none
+		sourceColumn: libelle_intervalle
+		sortByColumn: heure_sk
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column heure_pleine
+		dataType: int64
+		formatString: 0
+		lineageTag: dc964031-e77c-42db-ac46-73caa4a44aed
+		summarizeBy: none
+		sourceColumn: heure_pleine
+
+		annotation SummarizationSetBy = Automatic
+
+	column minute_debut
+		dataType: int64
+		formatString: 0
+		lineageTag: 618633d7-a8a8-407b-bbae-8c658740c5c4
+		summarizeBy: none
+		sourceColumn: minute_debut
+
+		annotation SummarizationSetBy = Automatic
+
+	column sec_debut
+		dataType: int64
+		formatString: 0
+		lineageTag: 2415a0cc-12ba-4463-8f3c-0b4d50aa46f5
+		summarizeBy: none
+		sourceColumn: sec_debut
+
+		annotation SummarizationSetBy = Automatic
+
+	column sec_fin
+		dataType: int64
+		formatString: 0
+		lineageTag: 03426185-a916-43cf-abd6-82c3caf461a4
+		summarizeBy: none
+		sourceColumn: sec_fin
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_fenetre_collecte
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7726686e-83eb-4c72-a738-93a0d198850d
+		summarizeBy: none
+		sourceColumn: est_fenetre_collecte
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_fenetre_analytique
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d44c5a2f-9e6a-4810-b9bf-06b4682c466e
+		summarizeBy: none
+		sourceColumn: est_fenetre_analytique
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_heure = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_heure"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

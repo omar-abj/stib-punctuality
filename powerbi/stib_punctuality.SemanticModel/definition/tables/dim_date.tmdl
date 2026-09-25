@@ -1,0 +1,158 @@
+table dim_date
+	lineageTag: 98bc5baa-facd-4c82-be9c-0fb2a8d6eed1
+	dataCategory: Time
+
+	column date_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 050ad3bf-793b-4be5-b867-adc9948eb347
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_service
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: dbe3111c-9c42-474a-a7a4-9d5778fd4602
+		summarizeBy: none
+		sourceColumn: date_service
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column annee
+		dataType: int64
+		formatString: 0
+		lineageTag: 3895df7d-dd70-47ae-9ca3-c9beb1327cc9
+		summarizeBy: none
+		sourceColumn: annee
+
+		annotation SummarizationSetBy = User
+
+	column mois
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c3294c2-40dd-40c3-ab79-e85b47b8f59e
+		summarizeBy: none
+		sourceColumn: mois
+
+		annotation SummarizationSetBy = User
+
+	column mois_nom
+		dataType: string
+		lineageTag: 4ff8d7da-e618-40e0-ad5c-72aeb175d8a3
+		summarizeBy: none
+		sourceColumn: mois_nom
+		sortByColumn: mois
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column jour
+		dataType: int64
+		formatString: 0
+		lineageTag: ade3b028-51f6-4afd-baef-8a7d40fdc3ee
+		summarizeBy: none
+		sourceColumn: jour
+
+		annotation SummarizationSetBy = User
+
+	column jour_semaine_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 77753a4d-d446-472b-b726-6c0c87432040
+		summarizeBy: none
+		sourceColumn: jour_semaine_num
+
+		annotation SummarizationSetBy = User
+
+	column jour_nom
+		dataType: string
+		lineageTag: e280005b-073a-4df0-bce2-c855b97ae8c1
+		summarizeBy: none
+		sourceColumn: jour_nom
+		sortByColumn: jour_semaine_num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column semaine_iso
+		dataType: int64
+		formatString: 0
+		lineageTag: d3848fe7-c0cb-40f1-9de1-85adfe265ee6
+		summarizeBy: none
+		sourceColumn: semaine_iso
+
+		annotation SummarizationSetBy = User
+
+	column est_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: def4ce33-cd70-489d-bb5d-946b844026d5
+		summarizeBy: none
+		sourceColumn: est_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_ferie
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bb159cad-1f6c-4070-8017-85a484b31c94
+		summarizeBy: none
+		sourceColumn: est_ferie
+
+		annotation SummarizationSetBy = Automatic
+
+	column ferie_libelle
+		dataType: string
+		lineageTag: ef49bac4-4540-4b47-83cf-1ae7eef46004
+		summarizeBy: none
+		sourceColumn: ferie_libelle
+
+		annotation SummarizationSetBy = Automatic
+
+	column regime_service
+		dataType: string
+		lineageTag: 4dee82c7-b319-4e6a-ba72-74d5f6b93d65
+		summarizeBy: none
+		sourceColumn: regime_service
+
+		annotation SummarizationSetBy = Automatic
+
+	column feed_version
+		dataType: string
+		lineageTag: ad4a3e06-fdf1-427b-a9b6-a812c75e452b
+		summarizeBy: none
+		sourceColumn: feed_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_collecte
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1326ef82-d461-4ab3-b6d8-9572076524dc
+		summarizeBy: none
+		sourceColumn: est_collecte
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_date"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

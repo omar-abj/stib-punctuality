@@ -1,0 +1,306 @@
+table fact_ecart
+	lineageTag: 30e19562-e99d-4a5a-a140-ebd980c405ba
+
+	column ecart_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4fdca767-80e0-4e15-bfbb-a3ebcc1b55da
+		summarizeBy: none
+		sourceColumn: ecart_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column date_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b6c1116d-06c5-4668-844c-e62f87651e2d
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column heure_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 230c32bf-900a-4d36-b063-19c7d40efc14
+		summarizeBy: none
+		sourceColumn: heure_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ligne_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 882fea45-278c-455b-8bcc-810181b758fe
+		summarizeBy: none
+		sourceColumn: ligne_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column arret_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c142fbab-0fc6-4cea-8291-d7b769bdceb7
+		summarizeBy: none
+		sourceColumn: arret_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column desserte_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 29d2d094-0de7-4826-a99b-6770d8921dd9
+		summarizeBy: none
+		sourceColumn: desserte_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column course_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f1cb14b7-21a4-44cf-9695-43efef706daf
+		summarizeBy: none
+		sourceColumn: course_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column meteo_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 934929c4-4966-43db-a52f-d032d0f03533
+		summarizeBy: none
+		sourceColumn: meteo_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_theorique
+		dataType: int64
+		formatString: 0
+		lineageTag: a316c6de-3e1f-4a43-928c-bd42af08105b
+		summarizeBy: sum
+		sourceColumn: nb_theorique
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_reel
+		dataType: int64
+		formatString: 0
+		lineageTag: a62d1033-3b98-44d7-8d95-7621c638fab7
+		summarizeBy: sum
+		sourceColumn: nb_reel
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_apparie
+		dataType: int64
+		formatString: 0
+		lineageTag: 095db812-fc24-4400-a4bc-d0add580551b
+		summarizeBy: sum
+		sourceColumn: nb_apparie
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_theo_seul
+		dataType: int64
+		formatString: 0
+		lineageTag: bea91318-cfec-4b2a-8256-a4167a733249
+		summarizeBy: sum
+		sourceColumn: nb_theo_seul
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_reel_seul
+		dataType: int64
+		formatString: 0
+		lineageTag: a01b09bd-963a-4327-866e-e296f83cf2fc
+		summarizeBy: sum
+		sourceColumn: nb_reel_seul
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_conforme
+		dataType: int64
+		formatString: 0
+		lineageTag: 552d8578-23a2-4051-8228-91769858bb47
+		summarizeBy: sum
+		sourceColumn: nb_conforme
+
+		annotation SummarizationSetBy = Automatic
+
+	column theorique_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: d641aa2f-5c94-4c3c-9ebf-e12791699516
+		summarizeBy: none
+		sourceColumn: theorique_sec
+
+		annotation SummarizationSetBy = User
+
+	column reel_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: ce85849b-8367-41ad-bcbb-a0f6651d3b7b
+		summarizeBy: none
+		sourceColumn: reel_sec
+
+		annotation SummarizationSetBy = User
+
+	column retard_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 482381a9-2991-48e3-b381-4ce5cc6908f7
+		summarizeBy: none
+		sourceColumn: retard_sec
+
+		annotation SummarizationSetBy = User
+
+	column ecart_abs_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f257752-17ab-4a4b-a255-10c4e455838c
+		summarizeBy: none
+		sourceColumn: ecart_abs_sec
+
+		annotation SummarizationSetBy = User
+
+	column tolerance_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 58fbd4c1-fc15-479f-ae00-7df3a60d004e
+		summarizeBy: none
+		sourceColumn: tolerance_sec
+
+		annotation SummarizationSetBy = User
+
+	column nb_obs
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bc4bae9-7e71-4d68-8324-7b06ae2abf3b
+		summarizeBy: none
+		sourceColumn: nb_obs
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraicheur_sec
+		dataType: int64
+		formatString: 0
+		lineageTag: 4091022e-cfc3-4965-b3a3-000d28001438
+		summarizeBy: none
+		sourceColumn: fraicheur_sec
+
+		annotation SummarizationSetBy = User
+
+	column statut_appariement
+		dataType: string
+		lineageTag: f65d3b78-dddd-41b2-8ddf-6d769a2047bd
+		summarizeBy: none
+		sourceColumn: statut_appariement
+
+		annotation SummarizationSetBy = Automatic
+
+	column heure_est_reelle
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4d4df2d1-6c7a-4196-af83-496c663afa35
+		summarizeBy: none
+		sourceColumn: heure_est_reelle
+
+		annotation SummarizationSetBy = Automatic
+
+	column methode_resolution
+		dataType: string
+		lineageTag: d446aaf3-0600-453a-a76c-777fb15be8cb
+		summarizeBy: none
+		sourceColumn: methode_resolution
+
+		annotation SummarizationSetBy = Automatic
+
+	column feed_version
+		dataType: string
+		lineageTag: 963bc286-24df-415b-aa2b-deccf4992ee4
+		summarizeBy: none
+		sourceColumn: feed_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column destination_rt
+		dataType: string
+		lineageTag: 6636a002-93b7-4c25-9979-6db6838d3107
+		summarizeBy: none
+		sourceColumn: destination_rt
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_avance
+		dataType: int64
+		formatString: 0
+		lineageTag: 067353b5-3cd3-465b-a050-a07bfcf2c845
+		summarizeBy: sum
+		sourceColumn: nb_avance
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_retard
+		dataType: int64
+		formatString: 0
+		lineageTag: fd053f1d-6d35-4b37-a869-acb6963beb2f
+		summarizeBy: sum
+		sourceColumn: nb_retard
+
+		annotation SummarizationSetBy = Automatic
+
+	column retard_bin
+		dataType: int64
+		formatString: 0
+		lineageTag: a30ad1f9-770f-458c-a989-013d75a1f3a0
+		summarizeBy: none
+		sourceColumn: retard_bin
+
+		annotation SummarizationSetBy = User
+
+	column direction_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 050e03b0-e0f9-458f-a578-a9013ae10033
+		summarizeBy: none
+		sourceColumn: direction_id
+
+		annotation SummarizationSetBy = User
+
+	partition fact_ecart = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "fact_ecart"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

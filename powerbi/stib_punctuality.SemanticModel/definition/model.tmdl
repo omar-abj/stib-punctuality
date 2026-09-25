@@ -1,0 +1,35 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-BE
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["diag_non_apparies","dim_arret","dim_course","dim_date","dim_desserte","dim_direction","dim_heure","dim_ligne","dim_meteo","fact_ecart","int_profil_arret","int_segment"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table diag_non_apparies
+ref table dim_arret
+ref table dim_course
+ref table dim_date
+ref table dim_desserte
+ref table dim_direction
+ref table dim_heure
+ref table dim_ligne
+ref table dim_meteo
+ref table fact_ecart
+ref table int_profil_arret
+ref table int_segment
+ref table _Mesures
+ref table Cascade_postes
+ref table Sensibilite_tolerance
+ref table Choix_indicateur
+ref table Tranches_effet
+
+ref cultureInfo fr-FR
+

@@ -1,0 +1,136 @@
+table int_profil_arret
+	lineageTag: af1701a8-7b36-4e92-ab78-58de4ccb760e
+
+	column line_id
+		dataType: string
+		lineageTag: 8b95e234-453a-4d25-8961-ab71d91bcca2
+		summarizeBy: none
+		sourceColumn: line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column route_type
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b151f9dd-2a96-48e9-ba90-258bf9c60a64
+		summarizeBy: none
+		sourceColumn: route_type
+
+		annotation SummarizationSetBy = User
+
+	column direction_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 620b51d4-307a-4d17-a620-a73ea6f16c19
+		summarizeBy: none
+		sourceColumn: direction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_geo
+		dataType: int64
+		formatString: 0
+		lineageTag: 94824519-98b7-4dbb-9813-d0c8605f5969
+		summarizeBy: none
+		sourceColumn: ordre_geo
+
+		annotation SummarizationSetBy = User
+
+	column stop_name
+		dataType: string
+		lineageTag: dc8669aa-7c85-4ecc-9fad-4535fd0f5b45
+		summarizeBy: none
+		sourceColumn: stop_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column libelle_affichage
+		dataType: string
+		lineageTag: 75569c52-2287-41f7-b808-804f0d36c459
+		summarizeBy: none
+		sourceColumn: libelle_affichage
+
+		annotation SummarizationSetBy = Automatic
+
+	column stop_id_racine
+		dataType: string
+		lineageTag: e23fcbbf-9117-4868-9722-f689e30a146b
+		summarizeBy: none
+		sourceColumn: stop_id_racine
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_passages
+		dataType: int64
+		formatString: 0
+		lineageTag: 994f2981-df36-4cc3-88a7-9fc5bfb1266c
+		summarizeBy: sum
+		sourceColumn: n_passages
+
+		annotation SummarizationSetBy = Automatic
+
+	column retard_median_sec
+		dataType: double
+		lineageTag: 7f43186c-1e6f-4810-a5e3-d824b2171c16
+		summarizeBy: none
+		sourceColumn: retard_median_sec
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retard_p10_sec
+		dataType: double
+		lineageTag: c1fd837a-9eb0-487f-b7d9-079b882c22a5
+		summarizeBy: none
+		sourceColumn: retard_p10_sec
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retard_p90_sec
+		dataType: double
+		lineageTag: 65d9a035-e4df-4aa9-99b7-58606e356d26
+		summarizeBy: none
+		sourceColumn: retard_p90_sec
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retard_moyen_sec
+		dataType: double
+		lineageTag: 3cc80d67-d5f6-4025-8bd9-9dd130b6658d
+		summarizeBy: none
+		sourceColumn: retard_moyen_sec
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ecart_type_sec
+		dataType: double
+		lineageTag: 9766b0c0-fa9b-43a1-bad6-fdf76657ee1c
+		summarizeBy: none
+		sourceColumn: ecart_type_sec
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition int_profil_arret = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "int_profil_arret"]}[Data],
+				  #"Sens en entier" = Table.TransformColumns(#"Navigation 2", {{"direction_id", each try Int64.From(_) otherwise -1, Int64.Type}})
+				in
+				  #"Sens en entier"
+
+	annotation PBI_ResultType = Table
+

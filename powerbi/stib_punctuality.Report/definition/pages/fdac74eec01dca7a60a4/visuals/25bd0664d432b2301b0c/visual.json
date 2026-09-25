@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "25bd0664d432b2301b0c",
+  "position": {
+    "x": 24.212678936605318,
+    "y": 560.16359918200408,
+    "z": 6000,
+    "height": 129.57055214723925,
+    "width": 1231.5746421267895,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Limites de la mesure",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Sans identifiant de course dans les données temps réel, une course supprimée et un retard hors tolérance sont indiscernables : les deux apparaissent comme « non retrouvés ».",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " Les passages au terminus d'arrivée ne sont pas publiés par l'API : les parcours s'arrêtent au dernier arrêt observé.",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": " La mesure couvre le créneau 9 h 15 – 13 h 45, du 1er juillet au 26 août 2026, période de travaux incluse : elle ne représente ni les heures de pointe ni le service d'hiver.",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

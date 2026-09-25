@@ -1,0 +1,61 @@
+table diag_non_apparies
+	lineageTag: 710a7d5d-4dbb-4fda-81c3-d3e40077579d
+
+	column cause_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 21fd58a0-37a1-4589-826b-80dba28a0e13
+		summarizeBy: none
+		sourceColumn: cause_id
+
+		annotation SummarizationSetBy = User
+
+	column cause_libelle
+		dataType: string
+		lineageTag: 3a96d047-8fc7-436a-a3b4-785047f83990
+		summarizeBy: none
+		sourceColumn: cause_libelle
+		sortByColumn: ordre_affichage
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column cause_nature
+		dataType: string
+		lineageTag: 8440f61f-098b-4dad-bb96-f3d4e5366676
+		summarizeBy: none
+		sourceColumn: cause_nature
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_passages
+		dataType: int64
+		formatString: 0
+		lineageTag: 250f870b-f5e5-48ba-9988-ef31ba1576f8
+		summarizeBy: sum
+		sourceColumn: nb_passages
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_affichage
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ac3d726-a891-4605-bc22-ae9a348cda5d
+		summarizeBy: none
+		sourceColumn: ordre_affichage
+
+		annotation SummarizationSetBy = User
+
+	partition diag_non_apparies = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "diag_non_apparies"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,103 @@
+table dim_desserte
+	lineageTag: 3cd81a43-9f7a-4854-b455-91656ed60cbf
+
+	column desserte_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5eff083c-97d1-4202-913c-e016d0a560d6
+		summarizeBy: none
+		sourceColumn: desserte_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_id
+		dataType: string
+		lineageTag: 64bc0df9-1949-4396-a172-1bcfb58a8945
+		summarizeBy: none
+		sourceColumn: line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column direction_id
+		dataType: string
+		lineageTag: f9e981a4-6c48-4656-903b-703894788dee
+		summarizeBy: none
+		sourceColumn: direction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column stop_id_racine
+		dataType: string
+		lineageTag: deafe8e1-5565-4875-9f0f-ba8db9eff19b
+		summarizeBy: none
+		sourceColumn: stop_id_racine
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_geo
+		dataType: int64
+		formatString: 0
+		lineageTag: b8391009-9b21-4082-9a57-b2dc883f455a
+		summarizeBy: none
+		sourceColumn: ordre_geo
+
+		annotation SummarizationSetBy = Automatic
+
+	column ordre_corridor
+		dataType: int64
+		formatString: 0
+		lineageTag: d637a83e-e073-4c04-87a4-d91dc45e393f
+		summarizeBy: none
+		sourceColumn: ordre_corridor
+
+		annotation SummarizationSetBy = Automatic
+
+	column stop_name
+		dataType: string
+		lineageTag: 5f5a0b72-413f-48d8-a353-c686c7e2108d
+		summarizeBy: none
+		sourceColumn: stop_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column libelle_affichage
+		dataType: string
+		lineageTag: 1d29a9e1-5d37-406e-a776-02755099ea1f
+		summarizeBy: none
+		sourceColumn: libelle_affichage
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_hors_epine
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 217fe9a3-1ab0-4413-bf6b-5c26f73da6dc
+		summarizeBy: none
+		sourceColumn: est_hors_epine
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_quai_terminus
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7c1391a7-0cbc-4e64-8675-1fc8709088cf
+		summarizeBy: none
+		sourceColumn: est_quai_terminus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_desserte = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_desserte"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

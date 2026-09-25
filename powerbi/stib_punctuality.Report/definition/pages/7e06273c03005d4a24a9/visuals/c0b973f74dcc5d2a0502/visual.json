@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "c0b973f74dcc5d2a0502",
+  "position": {
+    "x": 24,
+    "y": 56,
+    "z": 7000,
+    "height": 24,
+    "width": 1180,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Réseau STIB, 1er juillet au 26 août 2026, créneau 9 h 15 à 13 h 45. À l'heure : entre 1 minute d'avance et 3 minutes de retard.",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#5b6775"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

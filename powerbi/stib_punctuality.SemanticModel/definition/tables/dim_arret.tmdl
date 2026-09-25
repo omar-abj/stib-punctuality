@@ -1,0 +1,104 @@
+table dim_arret
+	lineageTag: 1b3c902f-692e-4477-9633-cf26bebe8835
+
+	column arret_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0c51a383-b4b8-4b11-8744-970ea0db7566
+		summarizeBy: none
+		sourceColumn: arret_sk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column point_id
+		dataType: string
+		lineageTag: 97151d3d-4e02-44c3-9f97-420fb69d2699
+		summarizeBy: none
+		sourceColumn: point_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column stop_id_ref
+		dataType: string
+		lineageTag: b211375b-9577-4067-9fce-90a73bf3b125
+		summarizeBy: none
+		sourceColumn: stop_id_ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column stop_name
+		dataType: string
+		lineageTag: 7863cb62-0766-43fd-a463-bc641a672f40
+		summarizeBy: none
+		sourceColumn: stop_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column stop_lat
+		dataType: double
+		lineageTag: d4a82021-9414-4ea8-956c-12ca240fb48a
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: stop_lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column stop_lon
+		dataType: double
+		lineageTag: f7fec236-59e4-4b8f-8be6-8a7db88da101
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: stop_lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column feed_version_ref
+		dataType: string
+		lineageTag: 42690a96-86fe-4435-b25a-ff7a6ee16e1c
+		summarizeBy: none
+		sourceColumn: feed_version_ref
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Nombre de lignes du classement (71) desservant l'arrêt physique, regroupé par nom. Calculé en SQL (script 67).
+	column nb_lignes_arret
+		dataType: int64
+		formatString: 0
+		lineageTag: 563cb8da-eb26-4bb1-aa0a-c9a50211f1ef
+		summarizeBy: none
+		sourceColumn: nb_lignes_arret
+
+	/// Ordre d'affichage des classes de correspondance.
+	column ordre_classe_correspondance
+		dataType: int64
+		isHidden
+		lineageTag: be41baa3-f005-4fa2-aee4-2a91136338c6
+		summarizeBy: none
+		sourceColumn: ordre_classe_correspondance
+
+	/// Classe de correspondance de l'arrêt : 1 ligne, 2 à 3, 4 à 6, 7 et plus.
+	column classe_correspondance
+		dataType: string
+		lineageTag: 450e5550-e66c-40a6-88e0-8468d3cf79f6
+		sourceColumn: classe_correspondance
+		sortByColumn: ordre_classe_correspondance
+
+	partition dim_arret = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Databases("PC-OMAR"),
+				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
+				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_arret"]}[Data]
+				in
+				  #"Navigation 2"
+
+	annotation PBI_ResultType = Table
+

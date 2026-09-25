@@ -1,0 +1,34 @@
+/// Choix de l'indicateur pour la page Explorer. "Sens favorable" vaut 1 quand une valeur élevée est bonne (conformité) et -1 quand elle est mauvaise. Table déconnectée.
+table Choix_indicateur
+	lineageTag: 79ea87ad-c3fc-413c-b29d-a6a448cef654
+
+	column Ordre
+		lineageTag: d166f23f-bb74-41c9-ae87-cf991665138b
+		isNameInferred
+		sourceColumn: [Ordre]
+
+	column Indicateur
+		lineageTag: 2097525d-9337-4d29-8c1b-761d46b45b1c
+		isNameInferred
+		sourceColumn: [Indicateur]
+
+	column 'Sens favorable'
+		lineageTag: 5ba4b7a1-bfbc-4530-99ad-a3ad4072feb2
+		isNameInferred
+		sourceColumn: [Sens favorable]
+
+	partition Choix_indicateur = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Ordre", INTEGER,
+				    "Indicateur", STRING,
+				    "Sens favorable", INTEGER,
+				    {
+				        { 1, "Conformité",   1 },
+				        { 2, "En avance",    -1 },
+				        { 3, "En retard",    -1 },
+				        { 4, "Non retrouvé", -1 }
+				    }
+				)
+

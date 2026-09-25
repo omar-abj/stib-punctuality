@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "1de8ade0b0a68bc19a00",
+  "position": {
+    "x": 655.70552147239266,
+    "y": 90.961145194274025,
+    "z": 2004,
+    "height": 45.807770961145195,
+    "width": 539.2229038854806,
+    "tabOrder": 2004
+  },
+  "visual": {
+    "visualType": "textSlicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_arret"
+                    }
+                  },
+                  "Property": "stop_name"
+                }
+              },
+              "queryRef": "dim_arret.stop_name",
+              "nativeQueryRef": "Arrêt",
+              "displayName": "Arrêt"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f8eb401e9b04a855b3ee",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_arret"
+              }
+            },
+            "Property": "stop_name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

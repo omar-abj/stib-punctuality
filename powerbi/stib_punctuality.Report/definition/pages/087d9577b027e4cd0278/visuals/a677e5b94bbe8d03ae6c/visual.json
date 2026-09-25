@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "a677e5b94bbe8d03ae6c",
+  "position": {
+    "x": 653.293768545994,
+    "y": 470.97922848664683,
+    "z": 6000,
+    "height": 224.09495548961422,
+    "width": 602.01780415430267,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_heure"
+                    }
+                  },
+                  "Property": "libelle_creneau"
+                }
+              },
+              "queryRef": "dim_heure.libelle_creneau",
+              "nativeQueryRef": "libelle_creneau",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Taux de conformité"
+                }
+              },
+              "queryRef": "_Mesures.Taux de conformité",
+              "nativeQueryRef": "Taux de conformité"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'L''heure change peu, sauf en début et fin de fenêtre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

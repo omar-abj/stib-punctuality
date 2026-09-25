@@ -136,7 +136,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Hors de l''horaire, l''avance est trois fois plus fréquente que le retard'"
+                  "Value": "'L''avance est la première cause de non-conformité'"
                 }
               }
             },

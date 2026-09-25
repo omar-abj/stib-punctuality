@@ -12,6 +12,8 @@
         (desserte_sk = -1). TINYINT (0 a 255) ne stocke pas -1 : passage
         en SMALLINT.
 
+   V3 - 25/09/2026 : libelles en anglais (affiches dans le rapport).
+
    IDEMPOTENCE
         DROP + CREATE. Depuis 66, fact_ecart porte une FK vers cette table :
         la FK est supprimee d'abord si elle existe. Relancer 66 ensuite
@@ -34,9 +36,9 @@ CREATE TABLE dbo.dim_direction (
 );
 
 INSERT INTO dbo.dim_direction (direction_id, libelle)
-VALUES (-1, N'Sens inconnu'),
-       ( 0, N'Sens aller'),
-       ( 1, N'Sens retour');
+VALUES (-1, N'Unknown direction'),
+       ( 0, N'Outbound'),
+       ( 1, N'Inbound');
 GO
 
 SELECT * FROM dbo.dim_direction ORDER BY direction_id;

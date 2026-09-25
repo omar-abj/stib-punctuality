@@ -19,66 +19,66 @@
               {
                 "textRuns": [
                   {
-                    "value": "33,5 M",
+                    "value": "33.5M",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt"
                     }
                   },
                   {
-                    "value": " observations temps réel → ",
+                    "value": " real-time observations → ",
                     "textStyle": {
                       "fontSize": "12pt"
                     }
                   },
                   {
-                    "value": "3,93 M",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "12pt"
-                    }
-                  },
-                  {
-                    "value": " passages reconstitués, comparés à ",
-                    "textStyle": {
-                      "fontSize": "12pt"
-                    }
-                  },
-                  {
-                    "value": "3,60 M",
+                    "value": "3.93M",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt"
                     }
                   },
                   {
-                    "value": " horaires annoncés, dont ",
+                    "value": " reconstructed stop events, compared with ",
                     "textStyle": {
                       "fontSize": "12pt"
                     }
                   },
                   {
-                    "value": "3,43 M",
-                    "textStyle": {
-                      "fontWeight": "bold",
-                      "fontSize": "12pt"
-                    }
-                  },
-                  {
-                    "value": " observables → ",
-                    "textStyle": {
-                      "fontSize": "12pt"
-                    }
-                  },
-                  {
-                    "value": "64,6 %",
+                    "value": "3.60M",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt"
                     }
                   },
                   {
-                    "value": " à l'heure",
+                    "value": " scheduled ones, of which ",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "3.43M",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": " observable → ",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": "64.6%",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "12pt"
+                    }
+                  },
+                  {
+                    "value": " on time",
                     "textStyle": {
                       "fontSize": "12pt"
                     }

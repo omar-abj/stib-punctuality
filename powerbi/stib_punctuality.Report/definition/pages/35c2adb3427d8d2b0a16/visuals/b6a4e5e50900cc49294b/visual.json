@@ -23,11 +23,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Titre zoom"
+                  "Property": "Zoom title"
                 }
               },
-              "queryRef": "_Mesures.Titre zoom",
-              "nativeQueryRef": "Titre zoom"
+              "queryRef": "_Mesures.Zoom title",
+              "nativeQueryRef": "Zoom title"
             }
           ]
         }

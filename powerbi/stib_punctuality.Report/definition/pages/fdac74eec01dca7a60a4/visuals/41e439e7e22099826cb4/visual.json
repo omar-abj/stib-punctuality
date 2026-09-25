@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Part des non-appariés"
+                  "Property": "Share of unmatched"
                 }
               },
-              "queryRef": "_Mesures.Part des non-appariés",
-              "nativeQueryRef": "Part des non-appariés"
+              "queryRef": "_Mesures.Share of unmatched",
+              "nativeQueryRef": "Share of unmatched"
             }
           ]
         }
@@ -161,7 +161,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Methode'"
+                        "Value": "'Method'"
                       }
                     }
                   }
@@ -223,7 +223,7 @@
                           "Entity": "_Mesures"
                         }
                       },
-                      "Property": "Couleur nature"
+                      "Property": "Cause type colour"
                     }
                   }
                 }
@@ -249,7 +249,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Pourquoi 12,1 % des passages ne sont pas retrouvés'"
+                  "Value": "'Why 12.1% of stop events are not found'"
                 }
               }
             },

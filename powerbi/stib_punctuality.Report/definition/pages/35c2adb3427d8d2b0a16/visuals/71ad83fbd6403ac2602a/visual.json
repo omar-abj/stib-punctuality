@@ -121,7 +121,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ligne'"
+                  "Value": "'Line'"
                 }
               }
             }

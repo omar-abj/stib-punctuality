@@ -23,11 +23,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Part en avance"
+                  "Property": "Early share"
                 }
               },
-              "queryRef": "_Mesures.Part en avance",
-              "nativeQueryRef": "Part en avance"
+              "queryRef": "_Mesures.Early share",
+              "nativeQueryRef": "Early share"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Part en avance"
+                "Property": "Early share"
               }
             },
             "direction": "Descending"

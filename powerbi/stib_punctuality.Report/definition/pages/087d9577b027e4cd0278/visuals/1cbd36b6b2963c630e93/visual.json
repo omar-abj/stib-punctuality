@@ -60,11 +60,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Taux de conformité"
+                  "Property": "On-time rate"
                 }
               },
-              "queryRef": "_Mesures.Taux de conformité",
-              "nativeQueryRef": "Taux de conformité"
+              "queryRef": "_Mesures.On-time rate",
+              "nativeQueryRef": "On-time rate"
             }
           ]
         }
@@ -105,7 +105,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Métro'"
+                        "Value": "'Metro'"
                       }
                     }
                   }
@@ -323,7 +323,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Métro'"
+                        "Value": "'Metro'"
                       }
                     }
                   }
@@ -381,7 +381,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Conformité par jour et par mode'"
+                  "Value": "'On-time rate by day and mode'"
                 }
               }
             }

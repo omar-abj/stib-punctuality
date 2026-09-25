@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Couleur = écart au réseau pour l'indicateur choisi",
+                    "value": "Colour = gap to the network for the chosen indicator",
                     "textStyle": {
                       "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
                       "fontSize": "11pt",

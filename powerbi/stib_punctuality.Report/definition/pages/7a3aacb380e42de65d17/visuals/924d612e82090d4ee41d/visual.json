@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Bleu : au-dessus du réseau. Rouge : en dessous. Intensité selon l'écart (±2 et ±5 points).",
+                    "value": "Blue: above the network. Red: below. Intensity by gap (±2 and ±5 points).",
                     "textStyle": {
                       "fontSize": "8pt"
                     }

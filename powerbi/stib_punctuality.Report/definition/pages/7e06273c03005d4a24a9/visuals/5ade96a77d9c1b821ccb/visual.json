@@ -23,11 +23,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Taux de conformité"
+                  "Property": "On-time rate"
                 }
               },
-              "queryRef": "_Mesures.Taux de conformité",
-              "nativeQueryRef": "Taux de conformité"
+              "queryRef": "_Mesures.On-time rate",
+              "nativeQueryRef": "On-time rate"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Taux de conformité"
+                "Property": "On-time rate"
               }
             },
             "direction": "Descending"

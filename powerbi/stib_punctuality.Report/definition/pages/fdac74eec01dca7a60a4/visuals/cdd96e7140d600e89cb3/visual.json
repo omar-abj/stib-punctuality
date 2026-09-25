@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Les trois quarts des passages non retrouvés relèvent du service, pas de la méthode",
+                    "value": "Three quarters of the stop events not found are due to the service, not the method",
                     "textStyle": {
                       "fontFamily": "DIN",
                       "fontSize": "14pt"

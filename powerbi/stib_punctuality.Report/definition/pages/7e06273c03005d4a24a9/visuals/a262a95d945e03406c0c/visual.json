@@ -23,12 +23,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Lignes analysées"
+                  "Property": "Lines analysed"
                 }
               },
-              "queryRef": "_Mesures.Lignes analysées",
-              "nativeQueryRef": "Lignes",
-              "displayName": "Lignes"
+              "queryRef": "_Mesures.Lines analysed",
+              "nativeQueryRef": "Lines",
+              "displayName": "Lines"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Lignes analysées"
+                "Property": "Lines analysed"
               }
             },
             "direction": "Descending"

@@ -137,7 +137,7 @@ table dim_ligne
 
 		annotation SummarizationSetBy = User
 
-	/// Ordre d'affichage des modes : 1 Métro, 2 Tram, 3 Bus (ajouté dans Power Query).
+	/// Display order of the modes: 1 Metro, 2 Tram, 3 Bus (added in Power Query).
 	column 'Ordre mode'
 		dataType: int64
 		isHidden
@@ -145,7 +145,7 @@ table dim_ligne
 		summarizeBy: none
 		sourceColumn: Ordre mode
 
-	/// Libellé du mode (ajouté dans Power Query à partir de route_type GTFS : 0 tram, 1 métro, 3 bus).
+	/// Mode label (added in Power Query from GTFS route_type: 0 tram, 1 metro, 3 bus).
 	column Mode
 		dataType: string
 		lineageTag: 79bddd38-4bd5-41a5-a6ae-40336df96a83
@@ -159,7 +159,7 @@ table dim_ligne
 				  Source = Sql.Databases("PC-OMAR"),
 				  #"Navigation 1" = Source{[Name = "TFE_STIB"]}[Data],
 				  #"Navigation 2" = #"Navigation 1"{[Schema = "dbo", Item = "dim_ligne"]}[Data],
-				  #"Ajout Mode" = Table.AddColumn(#"Navigation 2", "Mode", each if [route_type] = 1 then "Métro" else if [route_type] = 0 then "Tram" else if [route_type] = 3 then "Bus" else null, type text),
+				  #"Ajout Mode" = Table.AddColumn(#"Navigation 2", "Mode", each if [route_type] = 1 then "Metro" else if [route_type] = 0 then "Tram" else if [route_type] = 3 then "Bus" else null, type text),
 				  #"Ajout Ordre mode" = Table.AddColumn(#"Ajout Mode", "Ordre mode", each if [route_type] = 1 then 1 else if [route_type] = 0 then 2 else if [route_type] = 3 then 3 else null, Int64.Type)
 				in
 				  #"Ajout Ordre mode"

@@ -23,11 +23,11 @@
                       "Entity": "Cascade_postes"
                     }
                   },
-                  "Property": "Poste"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "Cascade_postes.Poste",
-              "nativeQueryRef": "Poste",
+              "queryRef": "Cascade_postes.Category",
+              "nativeQueryRef": "Category",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Passages du poste"
+                  "Property": "Category stop events"
                 }
               },
-              "queryRef": "_Mesures.Passages du poste",
-              "nativeQueryRef": "Passages du poste"
+              "queryRef": "_Mesures.Category stop events",
+              "nativeQueryRef": "Category stop events"
             }
           ]
         },
@@ -60,11 +60,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Part du poste"
+                  "Property": "Category share"
                 }
               },
-              "queryRef": "_Mesures.Part du poste",
-              "nativeQueryRef": "Part du poste"
+              "queryRef": "_Mesures.Category share",
+              "nativeQueryRef": "Category share"
             }
           ]
         }
@@ -84,7 +84,7 @@
                           "Entity": "_Mesures"
                         }
                       },
-                      "Property": "Couleur du poste"
+                      "Property": "Category colour"
                     }
                   }
                 }
@@ -136,7 +136,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'L''avance est la première cause de non-conformité'"
+                  "Value": "'Early running is the main cause of non-compliance'"
                 }
               }
             },
@@ -191,7 +191,7 @@
                 "Entity": "Cascade_postes"
               }
             },
-            "Property": "Poste"
+            "Property": "Category"
           }
         },
         "type": "Categorical"
@@ -205,7 +205,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Passages du poste"
+            "Property": "Category stop events"
           }
         },
         "type": "Advanced"
@@ -219,7 +219,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Part du poste"
+            "Property": "Category share"
           }
         },
         "type": "Advanced"

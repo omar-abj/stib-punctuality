@@ -23,11 +23,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Parcours"
+                  "Property": "Route"
                 }
               },
-              "queryRef": "_Mesures.Parcours",
-              "nativeQueryRef": "Parcours"
+              "queryRef": "_Mesures.Route",
+              "nativeQueryRef": "Route"
             }
           ]
         }

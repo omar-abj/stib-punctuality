@@ -23,11 +23,11 @@
                       "Entity": "Tranches_effet"
                     }
                   },
-                  "Property": "Tranche"
+                  "Property": "Range"
                 }
               },
-              "queryRef": "Tranches_effet.Tranche",
-              "nativeQueryRef": "Tranche",
+              "queryRef": "Tranches_effet.Range",
+              "nativeQueryRef": "Range",
               "active": true
             }
           ]
@@ -44,14 +44,14 @@
                           "Entity": "Tranches_effet"
                         }
                       },
-                      "Property": "Ordre"
+                      "Property": "Order"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(Tranches_effet.Ordre)",
-              "nativeQueryRef": "Ordre"
+              "queryRef": "Sum(Tranches_effet.Order)",
+              "nativeQueryRef": "Order"
             }
           ]
         },
@@ -65,11 +65,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Arrêts dans la tranche"
+                  "Property": "Stops in range"
                 }
               },
-              "queryRef": "_Mesures.Arrêts dans la tranche",
-              "nativeQueryRef": "Arrêts dans la tranche"
+              "queryRef": "_Mesures.Stops in range",
+              "nativeQueryRef": "Stops in range"
             }
           ]
         }
@@ -86,7 +86,7 @@
                         "Entity": "Tranches_effet"
                       }
                     },
-                    "Property": "Ordre"
+                    "Property": "Order"
                   }
                 },
                 "Function": 0
@@ -118,7 +118,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Nombre d''arrêts'"
+                  "Value": "'Number of stops'"
                 }
               }
             }
@@ -167,12 +167,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'-20 et moins'"
+                        "Value": "'-20 or less'"
                       }
                     }
                   }
@@ -209,12 +209,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'+15 à +20'"
+                        "Value": "'+15 to +20'"
                       }
                     }
                   }
@@ -251,12 +251,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'-20 à -15'"
+                        "Value": "'-20 to -15'"
                       }
                     }
                   }
@@ -293,12 +293,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'+10 à +15'"
+                        "Value": "'+10 to +15'"
                       }
                     }
                   }
@@ -335,12 +335,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'+20 et plus'"
+                        "Value": "'+20 or more'"
                       }
                     }
                   }
@@ -377,12 +377,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'-15 à -10'"
+                        "Value": "'-15 to -10'"
                       }
                     }
                   }
@@ -419,12 +419,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'-10 à -5'"
+                        "Value": "'-10 to -5'"
                       }
                     }
                   }
@@ -461,12 +461,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'+5 à +10'"
+                        "Value": "'+5 to +10'"
                       }
                     }
                   }
@@ -503,12 +503,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'-5 à 0'"
+                        "Value": "'-5 to 0'"
                       }
                     }
                   }
@@ -545,12 +545,12 @@
                             "Entity": "Tranches_effet"
                           }
                         },
-                        "Property": "Tranche"
+                        "Property": "Range"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'0 à +5'"
+                        "Value": "'0 to +5'"
                       }
                     }
                   }
@@ -573,7 +573,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ecart à la conformité attendue'"
+                  "Value": "'Gap to expected on-time rate'"
                 }
               }
             }
@@ -588,7 +588,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'La plupart des arrêts se comportent comme leurs lignes'"
+                  "Value": "'Most stops behave like their lines'"
                 }
               }
             }
@@ -622,7 +622,7 @@
                 "Entity": "Tranches_effet"
               }
             },
-            "Property": "Tranche"
+            "Property": "Range"
           }
         },
         "type": "Categorical"
@@ -636,7 +636,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Arrêts dans la tranche"
+            "Property": "Stops in range"
           }
         },
         "type": "Advanced"
@@ -652,7 +652,7 @@
                     "Entity": "Tranches_effet"
                   }
                 },
-                "Property": "Ordre"
+                "Property": "Order"
               }
             },
             "Function": 0

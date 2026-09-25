@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Des temps de parcours mal calibrés",
+                    "value": "Poorly calibrated running times",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt",
@@ -38,7 +38,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Un tronçon sur trois est parcouru au moins 10 s plus vite que prévu, un sur cinq au moins 10 s plus lentement. ",
+                    "value": "One segment in three is run at least 10 s faster than scheduled, one in five at least 10 s slower. ",
                     "textStyle": {
                       "fontSize": "10.5pt"
                     }

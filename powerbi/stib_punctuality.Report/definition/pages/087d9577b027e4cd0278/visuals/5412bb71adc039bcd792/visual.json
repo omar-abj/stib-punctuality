@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Taux de conformité"
+                  "Property": "On-time rate"
                 }
               },
-              "queryRef": "_Mesures.Taux de conformité",
-              "nativeQueryRef": "Taux de conformité"
+              "queryRef": "_Mesures.On-time rate",
+              "nativeQueryRef": "On-time rate"
             }
           ]
         }
@@ -107,7 +107,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'lundi'"
+                        "Value": "'Monday'"
                       }
                     }
                   }
@@ -149,7 +149,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'mardi'"
+                        "Value": "'Tuesday'"
                       }
                     }
                   }
@@ -191,7 +191,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'mercredi'"
+                        "Value": "'Wednesday'"
                       }
                     }
                   }
@@ -233,7 +233,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'jeudi'"
+                        "Value": "'Thursday'"
                       }
                     }
                   }
@@ -275,7 +275,7 @@
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'vendredi'"
+                        "Value": "'Friday'"
                       }
                     }
                   }
@@ -319,7 +319,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Le week-end, à peine 2 points de mieux'"
+                  "Value": "'Weekends are barely 2 points better'"
                 }
               }
             },

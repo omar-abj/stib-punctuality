@@ -45,13 +45,16 @@ SELECT
     YEAR(b.date_service)                    AS annee,
     MONTH(b.date_service)                   AS mois,
     CHOOSE(MONTH(b.date_service),
-           'janvier','février','mars','avril','mai','juin','juillet',
-           'août','septembre','octobre','novembre','décembre') AS mois_nom,
+           'January','February','March','April','May','June','July',
+           'August','September','October','November','December') AS mois_nom,
     DAY(b.date_service)                     AS jour,
     b.jour_semaine_num,
     CHOOSE(b.jour_semaine_num + 1,
-           'lundi','mardi','mercredi','jeudi',
-           'vendredi','samedi','dimanche')  AS jour_nom,
+           'Monday','Tuesday','Wednesday','Thursday',
+           'Friday','Saturday','Sunday')    AS jour_nom,
+    -- Libelles en anglais depuis le 25/09/2026 : ils sont affiches tels
+    -- quels dans le rapport Power BI, redige en anglais. regime_service
+    -- reste en francais : valeur technique, jamais affichee.
     DATEPART(ISO_WEEK, b.date_service)      AS semaine_iso,
     CAST(CASE WHEN b.jour_semaine_num >= 5 THEN 1 ELSE 0 END AS BIT) AS est_weekend,
     CAST(CASE WHEN b.ferie_libelle IS NOT NULL THEN 1 ELSE 0 END AS BIT) AS est_ferie,

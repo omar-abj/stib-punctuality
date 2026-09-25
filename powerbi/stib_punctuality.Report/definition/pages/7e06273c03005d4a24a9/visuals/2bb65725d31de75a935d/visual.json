@@ -23,12 +23,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Jours analysés"
+                  "Property": "Days analysed"
                 }
               },
-              "queryRef": "_Mesures.Jours analysés",
-              "nativeQueryRef": "Jours ",
-              "displayName": "Jours "
+              "queryRef": "_Mesures.Days analysed",
+              "nativeQueryRef": "Days ",
+              "displayName": "Days "
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Jours analysés"
+                "Property": "Days analysed"
               }
             },
             "direction": "Descending"

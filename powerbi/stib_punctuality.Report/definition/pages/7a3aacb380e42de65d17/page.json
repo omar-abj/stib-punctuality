@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "7a3aacb380e42de65d17",
-  "displayName": "Explorer",
+  "displayName": "Explore",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,

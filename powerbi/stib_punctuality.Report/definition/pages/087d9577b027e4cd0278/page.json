@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "087d9577b027e4cd0278",
-  "displayName": "Temps",
+  "displayName": "Time",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280

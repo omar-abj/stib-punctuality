@@ -23,12 +23,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Écart au réseau"
+                  "Property": "Gap to network average"
                 }
               },
-              "queryRef": "_Mesures.Écart au réseau",
-              "nativeQueryRef": "Écart",
-              "displayName": "Écart"
+              "queryRef": "_Mesures.Gap to network average",
+              "nativeQueryRef": "Gap",
+              "displayName": "Gap"
             }
           ]
         }
@@ -43,7 +43,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Écart au réseau"
+                "Property": "Gap to network average"
               }
             },
             "direction": "Descending"

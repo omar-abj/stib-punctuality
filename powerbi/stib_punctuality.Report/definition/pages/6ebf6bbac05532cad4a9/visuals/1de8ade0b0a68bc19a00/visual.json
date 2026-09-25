@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "dim_arret.stop_name",
-              "nativeQueryRef": "Arrêt",
-              "displayName": "Arrêt"
+              "nativeQueryRef": "Stop",
+              "displayName": "Stop"
             }
           ]
         }

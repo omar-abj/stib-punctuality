@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Explorer : quelle ligne, à quelle heure, à quel arrêt",
+                    "value": "Explore: which line, at what time, at which stop",
                     "textStyle": {
                       "fontFamily": "DIN",
                       "fontSize": "18pt"

@@ -23,11 +23,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Passages théoriques"
+                  "Property": "Scheduled stop events"
                 }
               },
-              "queryRef": "_Mesures.Passages théoriques",
-              "nativeQueryRef": "Passages théoriques",
+              "queryRef": "_Mesures.Scheduled stop events",
+              "nativeQueryRef": "Scheduled stop events",
               "format": "0"
             }
           ]
@@ -43,7 +43,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Passages théoriques"
+                "Property": "Scheduled stop events"
               }
             },
             "direction": "Descending"
@@ -72,7 +72,7 @@
             }
           },
           "selector": {
-            "metadata": "_Mesures.Passages théoriques"
+            "metadata": "_Mesures.Scheduled stop events"
           }
         }
       ],
@@ -82,13 +82,13 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Passages'"
+                  "Value": "'Stop events'"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Mesures.Passages théoriques"
+            "metadata": "_Mesures.Scheduled stop events"
           }
         }
       ]

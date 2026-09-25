@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Le mode compte, mais pas seul",
+                    "value": "Mode matters, but not alone",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt",
@@ -38,7 +38,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Métro 87 %, tram 69 %, bus 59 %. Pourtant la ligne de bus 78 fait mieux que deux lignes de métro.",
+                    "value": "Metro 87%, tram 69%, bus 59%. Yet bus line 78 does better than two metro lines.",
                     "textStyle": {
                       "fontSize": "10.5pt",
                       "color": "#5b6775"
@@ -63,7 +63,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Lignes →",
+                    "value": "Lines →",
                     "textStyle": {
                       "color": "#1d6fa3"
                     }

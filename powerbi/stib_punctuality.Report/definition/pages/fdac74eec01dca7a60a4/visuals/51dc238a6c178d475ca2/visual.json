@@ -23,11 +23,11 @@
                       "Entity": "Sensibilite_tolerance"
                     }
                   },
-                  "Property": "Tolérance (s)"
+                  "Property": "Tolerance (s)"
                 }
               },
-              "queryRef": "Sensibilite_tolerance.Tolérance (s)",
-              "nativeQueryRef": "Tolérance (s)",
+              "queryRef": "Sensibilite_tolerance.Tolerance (s)",
+              "nativeQueryRef": "Tolerance (s)",
               "active": true
             }
           ]
@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Conformité à tolérance"
+                  "Property": "On-time rate at tolerance"
                 }
               },
-              "queryRef": "_Mesures.Conformité à tolérance",
-              "nativeQueryRef": "Conformité à tolérance"
+              "queryRef": "_Mesures.On-time rate at tolerance",
+              "nativeQueryRef": "On-time rate at tolerance"
             }
           ]
         }
@@ -61,7 +61,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Conformité à tolérance"
+                "Property": "On-time rate at tolerance"
               }
             },
             "direction": "Descending"
@@ -84,7 +84,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tolérance (± secondes)'"
+                  "Value": "'Tolerance (± seconds)'"
                 }
               }
             }
@@ -150,7 +150,7 @@
             "displayName": {
               "expr": {
                 "Literal": {
-                  "Value": "'Définition retenue (−1 / +3 min)'"
+                  "Value": "'Definition used (−1 / +3 min)'"
                 }
               }
             },
@@ -206,7 +206,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Même avec 3 minutes de tolérance, un passage sur cinq n''est pas à l''heure'"
+                  "Value": "'Even with a 3-minute tolerance, one stop event in five is not on time'"
                 }
               }
             },

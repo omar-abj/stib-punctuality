@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Valeur indicateur"
+                  "Property": "Indicator value"
                 }
               },
-              "queryRef": "_Mesures.Valeur indicateur",
-              "nativeQueryRef": "Valeur indicateur"
+              "queryRef": "_Mesures.Indicator value",
+              "nativeQueryRef": "Indicator value"
             }
           ]
         }
@@ -92,7 +92,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Évolution jour par jour'"
+                  "Value": "'Day-by-day trend'"
                 }
               }
             }

@@ -123,14 +123,14 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Sens aller'"
+                          "Value": "'Outbound'"
                         }
                       }
                     ],
                     [
                       {
                         "Literal": {
-                          "Value": "'Sens retour'"
+                          "Value": "'Inbound'"
                         }
                       }
                     ]

@@ -22,13 +22,13 @@
                     "value": "C"
                   },
                   {
-                    "value": "omparaison sur la conformité, 71 lignes classées",
+                    "value": "omparison based on the on-time rate, 71 lines ranked",
                     "textStyle": {
                       "fontSize": "11pt"
                     }
                   },
                   {
-                    "value": " ; 4 exclues (M1, M5, T7, 35) : service absent en début ou fin de période.",
+                    "value": "; 4 excluded (M1, M5, T7, 35): no service at the start or end of the period.",
                     "textStyle": {
                       "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
                       "fontSize": "11pt",

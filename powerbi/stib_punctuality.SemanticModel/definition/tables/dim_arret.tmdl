@@ -67,7 +67,7 @@ table dim_arret
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Nombre de lignes du classement (71) desservant l'arrêt physique, regroupé par nom. Calculé en SQL (script 67).
+	/// Number of ranked lines (out of 71) serving the physical stop, grouped by name. Computed in SQL (script 67).
 	column nb_lignes_arret
 		dataType: int64
 		formatString: 0
@@ -75,7 +75,7 @@ table dim_arret
 		summarizeBy: none
 		sourceColumn: nb_lignes_arret
 
-	/// Ordre d'affichage des classes de correspondance.
+	/// Display order of the interchange classes.
 	column ordre_classe_correspondance
 		dataType: int64
 		isHidden
@@ -83,7 +83,7 @@ table dim_arret
 		summarizeBy: none
 		sourceColumn: ordre_classe_correspondance
 
-	/// Classe de correspondance de l'arrêt : 1 ligne, 2 à 3, 4 à 6, 7 et plus.
+	/// Interchange class of the stop: 1 line, 2 to 3, 4 to 6, 7 or more.
 	column classe_correspondance
 		dataType: string
 		lineageTag: 450e5550-e66c-40a6-88e0-8468d3cf79f6

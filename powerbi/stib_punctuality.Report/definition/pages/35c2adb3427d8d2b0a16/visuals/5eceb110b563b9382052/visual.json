@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Ordre profil"
+                  "Property": "Profile order"
                 }
               },
-              "queryRef": "_Mesures.Ordre profil",
-              "nativeQueryRef": "Ordre profil"
+              "queryRef": "_Mesures.Profile order",
+              "nativeQueryRef": "Profile order"
             }
           ]
         },
@@ -69,8 +69,8 @@
                 }
               },
               "queryRef": "CountNonNull(int_profil_arret.retard_median_sec)",
-              "nativeQueryRef": "Retard median (s)",
-              "displayName": "Retard median (s)"
+              "nativeQueryRef": "Median delay (s)",
+              "displayName": "Median delay (s)"
             },
             {
               "field": {
@@ -89,8 +89,8 @@
                 }
               },
               "queryRef": "CountNonNull(int_profil_arret.retard_p10_sec)",
-              "nativeQueryRef": "10% des passages",
-              "displayName": "10% des passages"
+              "nativeQueryRef": "10% of stop events",
+              "displayName": "10% of stop events"
             },
             {
               "field": {
@@ -109,8 +109,8 @@
                 }
               },
               "queryRef": "CountNonNull(int_profil_arret.retard_p90_sec)",
-              "nativeQueryRef": "90% des passages",
-              "displayName": "90% des passages"
+              "nativeQueryRef": "90% of stop events",
+              "displayName": "90% of stop events"
             }
           ]
         }
@@ -125,7 +125,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Ordre profil"
+                "Property": "Profile order"
               }
             },
             "direction": "Ascending"
@@ -187,7 +187,7 @@
             "displayName": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ligne de constante de l''axe Y 1'"
+                  "Value": "'Y-axis constant line 1'"
                 }
               }
             },
@@ -362,7 +362,7 @@
             "titleText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Écart à l''horaire (s)'"
+                  "Value": "'Deviation from schedule (s)'"
                 }
               }
             }
@@ -377,7 +377,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Le retard médian le long du parcours'"
+                  "Value": "'Median delay along the route'"
                 }
               }
             }
@@ -411,7 +411,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Arrêt habituel"
+            "Property": "Regular stop"
           }
         },
         "type": "Advanced",
@@ -436,7 +436,7 @@
                           "Source": "_"
                         }
                       },
-                      "Property": "Arrêt habituel"
+                      "Property": "Regular stop"
                     }
                   },
                   "Right": {
@@ -474,7 +474,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Ordre profil"
+            "Property": "Profile order"
           }
         },
         "type": "Advanced"

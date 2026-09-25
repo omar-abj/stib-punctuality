@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Limites de la mesure",
+                    "value": "Limitations",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "12pt"
@@ -30,7 +30,7 @@
               {
                 "textRuns": [
                   {
-                    "value": " Sans identifiant de course dans les données temps réel, une course supprimée et un retard hors tolérance sont indiscernables : les deux apparaissent comme « non retrouvés ».",
+                    "value": " With no trip identifier in the real-time data, a cancelled trip and a delay beyond tolerance cannot be told apart: both appear as \"not found\".",
                     "textStyle": {
                       "fontSize": "12pt"
                     }
@@ -40,7 +40,7 @@
               {
                 "textRuns": [
                   {
-                    "value": " Les passages au terminus d'arrivée ne sont pas publiés par l'API : les parcours s'arrêtent au dernier arrêt observé.",
+                    "value": " Arrivals at the final terminus are not published by the API: routes end at the last observed stop.",
                     "textStyle": {
                       "fontSize": "12pt"
                     }
@@ -50,7 +50,7 @@
               {
                 "textRuns": [
                   {
-                    "value": " La mesure couvre le créneau 9 h 15 – 13 h 45, du 1er juillet au 26 août 2026, période de travaux incluse : elle ne représente ni les heures de pointe ni le service d'hiver.",
+                    "value": " The measurement covers 9:15 to 13:45, from 1 July to 26 August 2026, including a period of roadworks: it represents neither peak hours nor the winter service.",
                     "textStyle": {
                       "fontSize": "12pt"
                     }

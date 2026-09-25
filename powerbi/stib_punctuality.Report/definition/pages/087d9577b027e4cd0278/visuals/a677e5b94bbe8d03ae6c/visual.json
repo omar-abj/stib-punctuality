@@ -42,11 +42,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Taux de conformité"
+                  "Property": "On-time rate"
                 }
               },
-              "queryRef": "_Mesures.Taux de conformité",
-              "nativeQueryRef": "Taux de conformité"
+              "queryRef": "_Mesures.On-time rate",
+              "nativeQueryRef": "On-time rate"
             }
           ]
         }
@@ -72,7 +72,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'L''heure change peu, sauf en début et fin de fenêtre'"
+                  "Value": "'Time of day changes little, except at the edges of the window'"
                 }
               }
             }

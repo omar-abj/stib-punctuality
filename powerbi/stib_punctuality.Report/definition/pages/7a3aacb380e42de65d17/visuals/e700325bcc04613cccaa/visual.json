@@ -46,9 +46,9 @@
                 }
               },
               "queryRef": "dim_ligne.line_id",
-              "nativeQueryRef": "Ligne",
+              "nativeQueryRef": "Line",
               "active": true,
-              "displayName": "Ligne"
+              "displayName": "Line"
             }
           ]
         },
@@ -62,11 +62,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Valeur indicateur"
+                  "Property": "Indicator value"
                 }
               },
-              "queryRef": "_Mesures.Valeur indicateur",
-              "nativeQueryRef": "Valeur indicateur"
+              "queryRef": "_Mesures.Indicator value",
+              "nativeQueryRef": "Indicator value"
             }
           ]
         }
@@ -86,7 +86,7 @@
                           "Entity": "_Mesures"
                         }
                       },
-                      "Property": "Couleur case"
+                      "Property": "Cell colour"
                     }
                   }
                 }
@@ -101,7 +101,7 @@
                 }
               }
             ],
-            "metadata": "_Mesures.Valeur indicateur"
+            "metadata": "_Mesures.Indicator value"
           }
         },
         {
@@ -120,7 +120,7 @@
         {
           "properties": {},
           "selector": {
-            "metadata": "_Mesures.Valeur indicateur"
+            "metadata": "_Mesures.Indicator value"
           }
         }
       ]
@@ -132,7 +132,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Conformité par ligne et par créneau, écart au réseau'"
+                  "Value": "'On-time rate by line and time slot, gap to the network'"
                 }
               }
             }

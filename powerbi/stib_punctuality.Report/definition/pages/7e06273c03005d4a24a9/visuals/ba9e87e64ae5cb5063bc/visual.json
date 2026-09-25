@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Moins de deux passages sur trois respectent l'horaire",
+                    "value": "Fewer than two stop events in three run on time",
                     "textStyle": {
                       "fontFamily": "DIN",
                       "fontSize": "20pt"

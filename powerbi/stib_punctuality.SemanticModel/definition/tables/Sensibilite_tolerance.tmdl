@@ -1,17 +1,17 @@
-/// Valeurs de tolérance symétrique (±30 à ±180 s, pas de 15 s) pour la courbe de sensibilité. Plafond à 180 s : au-delà, la tolérance d'appariement de certaines lignes (ligne 71 : 180 s) censure le résultat. Table déconnectée.
+/// Symmetric tolerance values (±30 to ±180 s, 15 s steps) for the sensitivity curve. Capped at 180 s: beyond that, the matching tolerance of some lines (line 71: 180 s) censors the result. Disconnected table.
 table Sensibilite_tolerance
 	lineageTag: 5fb801cd-8249-4f22-9df7-410a7f53c914
 
-	column 'Tolérance (s)'
+	column 'Tolerance (s)'
 		lineageTag: 52d42ced-244d-4b6a-a624-dace9768eb6f
 		isNameInferred
-		sourceColumn: [Tolérance (s)]
+		sourceColumn: [Tolerance (s)]
 
 	partition Sensibilite_tolerance = calculated
 		mode: import
 		source =
 				SELECTCOLUMNS (
 				    GENERATESERIES ( 30, 180, 15 ),
-				    "Tolérance (s)", [Value]
+				    "Tolerance (s)", [Value]
 				)
 

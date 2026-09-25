@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Peu de points noirs, mais nets",
+                    "value": "Few problem stops, but clear ones",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "11pt",
@@ -38,7 +38,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Sur 852 arrêts mesurés, 54 font plus de 10 points de moins que leurs lignes. Les pôles d'échange n'en font pas partie.",
+                    "value": "Out of 852 stops measured, 54 are more than 10 points below their lines. Interchange hubs are not among them.",
                     "textStyle": {
                       "fontSize": "10.5pt"
                     }
@@ -62,7 +62,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Arrêts →",
+                    "value": "Stops →",
                     "textStyle": {
                       "color": "#1d6fa3"
                     }

@@ -51,7 +51,7 @@
                 }
               },
               "queryRef": "CountNonNull(int_segment.n_courses)",
-              "nativeQueryRef": "Max de n_courses"
+              "nativeQueryRef": "Max of n_courses"
             },
             {
               "field": {
@@ -70,7 +70,7 @@
                 }
               },
               "queryRef": "CountNonNull(int_segment.ecart_type)",
-              "nativeQueryRef": "Max de ecart_type"
+              "nativeQueryRef": "Max of ecart_type"
             }
           ]
         },
@@ -84,11 +84,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Delta médian tronçon"
+                  "Property": "Segment median delta"
                 }
               },
-              "queryRef": "_Mesures.Delta médian tronçon",
-              "nativeQueryRef": "Delta médian tronçon"
+              "queryRef": "_Mesures.Segment median delta",
+              "nativeQueryRef": "Segment median delta"
             }
           ]
         }
@@ -103,7 +103,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Delta médian tronçon"
+                "Property": "Segment median delta"
               }
             },
             "direction": "Descending"
@@ -164,7 +164,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tronçons où le trajet dépasse l''horaire (écart médian)'"
+                  "Value": "'Segments where running time exceeds the schedule (median deviation)'"
                 }
               }
             }
@@ -233,7 +233,7 @@
                                 "Source": "_"
                               }
                             },
-                            "Property": "Delta médian tronçon"
+                            "Property": "Segment median delta"
                           }
                         }
                       }
@@ -286,7 +286,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Delta médian tronçon"
+            "Property": "Segment median delta"
           }
         },
         "type": "Advanced",
@@ -311,7 +311,7 @@
                           "Source": "_"
                         }
                       },
-                      "Property": "Delta médian tronçon"
+                      "Property": "Segment median delta"
                     }
                   },
                   "Right": {

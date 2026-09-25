@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Effet propre : écart entre la conformité observée à l'arrêt et celle attendue d'après les lignes qui les desservent.",
+                    "value": "Stop-specific effect: gap between the on-time rate observed at the stop and the rate expected from the lines serving it.",
                     "textStyle": {
                       "fontSize": "11pt",
                       "color": "#5b6775"

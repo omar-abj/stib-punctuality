@@ -22,13 +22,13 @@
                     "value": "■"
                   },
                   {
-                    "value": "Service : aucun véhicule n'est passé       ",
+                    "value": "Service: no vehicle ran       ",
                     "textStyle": {
                       "color": "#4f5d75"
                     }
                   },
                   {
-                    "value": "■ Méthode : limite de la chaîne de traitement",
+                    "value": "■ Method: limitation of the processing chain",
                     "textStyle": {
                       "color": "#9aa5b1"
                     }

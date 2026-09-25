@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "dim_arret.stop_name",
-              "nativeQueryRef": "Arrêt",
-              "displayName": "Arrêt"
+              "nativeQueryRef": "Stop",
+              "displayName": "Stop"
             },
             {
               "field": {
@@ -38,12 +38,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Lignes à l'arrêt"
+                  "Property": "Lines at stop"
                 }
               },
-              "queryRef": "_Mesures.Lignes à l'arrêt",
-              "nativeQueryRef": "Lignes",
-              "displayName": "Lignes"
+              "queryRef": "_Mesures.Lines at stop",
+              "nativeQueryRef": "Lines",
+              "displayName": "Lines"
             },
             {
               "field": {
@@ -53,12 +53,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Taux de conformité"
+                  "Property": "On-time rate"
                 }
               },
-              "queryRef": "_Mesures.Taux de conformité",
-              "nativeQueryRef": "Conformité",
-              "displayName": "Conformité"
+              "queryRef": "_Mesures.On-time rate",
+              "nativeQueryRef": "On-time rate",
+              "displayName": "On-time rate"
             },
             {
               "field": {
@@ -68,12 +68,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Part en avance"
+                  "Property": "Early share"
                 }
               },
-              "queryRef": "_Mesures.Part en avance",
-              "nativeQueryRef": "Avance",
-              "displayName": "Avance"
+              "queryRef": "_Mesures.Early share",
+              "nativeQueryRef": "Early",
+              "displayName": "Early"
             },
             {
               "field": {
@@ -83,12 +83,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Effet propre de l'arrêt"
+                  "Property": "Stop-specific effect"
                 }
               },
-              "queryRef": "_Mesures.Effet propre de l'arrêt",
-              "nativeQueryRef": "Effet propre",
-              "displayName": "Effet propre"
+              "queryRef": "_Mesures.Stop-specific effect",
+              "nativeQueryRef": "Stop-specific effect",
+              "displayName": "Stop-specific effect"
             }
           ]
         }
@@ -116,7 +116,7 @@
         {
           "properties": {},
           "selector": {
-            "metadata": "_Mesures.Effet propre de l'arrêt"
+            "metadata": "_Mesures.Stop-specific effect"
           }
         }
       ],
@@ -131,7 +131,7 @@
                 }
               }
             ],
-            "metadata": "_Mesures.Effet propre de l'arrêt"
+            "metadata": "_Mesures.Stop-specific effect"
           }
         }
       ],
@@ -176,7 +176,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Lignes à l'arrêt"
+            "Property": "Lines at stop"
           }
         },
         "type": "Advanced"
@@ -190,7 +190,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Taux de conformité"
+            "Property": "On-time rate"
           }
         },
         "type": "Advanced"
@@ -204,7 +204,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Part en avance"
+            "Property": "Early share"
           }
         },
         "type": "Advanced"
@@ -218,7 +218,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Effet propre de l'arrêt"
+            "Property": "Stop-specific effect"
           }
         },
         "type": "Advanced"

@@ -23,11 +23,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Passages théoriques"
+                  "Property": "Scheduled stop events"
                 }
               },
-              "queryRef": "_Mesures.Passages théoriques",
-              "nativeQueryRef": "Passages théoriques"
+              "queryRef": "_Mesures.Scheduled stop events",
+              "nativeQueryRef": "Scheduled stop events"
             }
           ]
         },
@@ -50,7 +50,7 @@
                 }
               },
               "queryRef": "Min(dim_arret.stop_name)",
-              "nativeQueryRef": "Premier stop_name"
+              "nativeQueryRef": "First stop_name"
             },
             {
               "field": {
@@ -60,11 +60,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Conformité arrêt (fiable)"
+                  "Property": "Stop on-time rate (reliable)"
                 }
               },
-              "queryRef": "_Mesures.Conformité arrêt (fiable)",
-              "nativeQueryRef": "Conformité arrêt (fiable)"
+              "queryRef": "_Mesures.Stop on-time rate (reliable)",
+              "nativeQueryRef": "Stop on-time rate (reliable)"
             },
             {
               "field": {
@@ -74,11 +74,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Passages théoriques"
+                  "Property": "Scheduled stop events"
                 }
               },
-              "queryRef": "_Mesures.Passages théoriques",
-              "nativeQueryRef": "Passages théoriques"
+              "queryRef": "_Mesures.Scheduled stop events",
+              "nativeQueryRef": "Scheduled stop events"
             }
           ]
         },
@@ -127,21 +127,21 @@
             "zoom": {
               "expr": {
                 "Literal": {
-                  "Value": "10.22D"
+                  "Value": "10.71D"
                 }
               }
             },
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "50.83617870273176D"
+                  "Value": "50.84746650005695D"
                 }
               }
             },
             "centerLongitude": {
               "expr": {
                 "Literal": {
-                  "Value": "4.362521499999957D"
+                  "Value": "4.389937499999974D"
                 }
               }
             },
@@ -184,7 +184,7 @@
                               "Entity": "_Mesures"
                             }
                           },
-                          "Property": "Conformité arrêt (fiable)"
+                          "Property": "Stop on-time rate (reliable)"
                         }
                       },
                       "FillRule": {
@@ -315,7 +315,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ponctualité par arrêt'"
+                  "Value": "'Punctuality by stop'"
                 }
               }
             },
@@ -382,10 +382,45 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Passages théoriques"
+            "Property": "Scheduled stop events"
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "_",
+              "Entity": "_Mesures",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "_"
+                        }
+                      },
+                      "Property": "Scheduled stop events"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "200L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true
       },
       {
         "name": "88cfe425390586a2264a",
@@ -415,7 +450,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Conformité arrêt (fiable)"
+            "Property": "Stop on-time rate (reliable)"
           }
         },
         "type": "Advanced"

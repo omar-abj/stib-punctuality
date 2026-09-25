@@ -42,11 +42,11 @@
                       "Entity": "Cascade_postes"
                     }
                   },
-                  "Property": "Poste"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "Cascade_postes.Poste",
-              "nativeQueryRef": "Poste"
+              "queryRef": "Cascade_postes.Category",
+              "nativeQueryRef": "Category"
             }
           ]
         },
@@ -60,11 +60,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Part du poste"
+                  "Property": "Category share"
                 }
               },
-              "queryRef": "_Mesures.Part du poste",
-              "nativeQueryRef": "Part du poste"
+              "queryRef": "_Mesures.Category share",
+              "nativeQueryRef": "Category share"
             }
           ]
         }
@@ -120,12 +120,12 @@
                             "Entity": "Cascade_postes"
                           }
                         },
-                        "Property": "Poste"
+                        "Property": "Category"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'À l''heure'"
+                        "Value": "'On time'"
                       }
                     }
                   }
@@ -157,12 +157,12 @@
                             "Entity": "Cascade_postes"
                           }
                         },
-                        "Property": "Poste"
+                        "Property": "Category"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'En avance'"
+                        "Value": "'Early'"
                       }
                     }
                   }
@@ -194,12 +194,12 @@
                             "Entity": "Cascade_postes"
                           }
                         },
-                        "Property": "Poste"
+                        "Property": "Category"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'En retard'"
+                        "Value": "'Late'"
                       }
                     }
                   }
@@ -231,12 +231,12 @@
                             "Entity": "Cascade_postes"
                           }
                         },
-                        "Property": "Poste"
+                        "Property": "Category"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Non retrouvé'"
+                        "Value": "'Not found'"
                       }
                     }
                   }
@@ -287,7 +287,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Le métro est à l''heure près de 9 fois sur 10, le bus 6 fois sur 10'"
+                  "Value": "'The metro is on time almost 9 times in 10, the bus 6 times in 10'"
                 }
               }
             },

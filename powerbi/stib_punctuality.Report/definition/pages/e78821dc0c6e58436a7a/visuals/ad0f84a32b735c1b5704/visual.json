@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "À retenir",
+                    "value": "Key takeaways",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontFamily": "Segoe UI Semibold",
@@ -32,7 +32,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Tram et bus perdent surtout en avance (19,9 % et 18,9 %), bien plus qu'en retard.",
+                    "value": "Tram and bus lose mostly to early running (19.9% and 18.9%), far more than to late running.",
                     "textStyle": {
                       "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
                       "fontSize": "12pt",
@@ -44,7 +44,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "La ligne de bus 78 (85,2 %) fait mieux que les métros 2 et 6.",
+                    "value": "Bus line 78 (85.2%) does better than metro lines 2 and 6.",
                     "textStyle": {
                       "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
                       "fontSize": "12pt",
@@ -56,7 +56,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Les quatre lignes les moins ponctuelles sont des bus (37, 20, 96, 65), toutes au moins 19 points sous la moyenne.",
+                    "value": "The four least punctual lines are buses (37, 20, 96, 65), all at least 19 points below average.",
                     "textStyle": {
                       "fontFamily": "Segoe UI, anthropic-sans, sans-serif",
                       "fontSize": "12pt",

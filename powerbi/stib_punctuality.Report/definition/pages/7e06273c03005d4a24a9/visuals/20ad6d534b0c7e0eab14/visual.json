@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Des écarts d'un jour à l'autre",
+                    "value": "Large day-to-day variation",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontSize": "11pt",
@@ -38,7 +38,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "La conformité passe de 57 % à 68 % selon la journée, surtout sur le métro. Le jour de la semaine et l'heure de la matinée n'expliquent presque rien.",
+                    "value": "The on-time rate ranges from 57% to 68% depending on the day, especially on the metro. Day of the week and time of morning explain almost nothing.",
                     "textStyle": {
                       "fontSize": "10.5pt"
                     }
@@ -55,7 +55,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Temps →",
+                    "value": "Time →",
                     "textStyle": {
                       "color": "#1d6fa3"
                     }

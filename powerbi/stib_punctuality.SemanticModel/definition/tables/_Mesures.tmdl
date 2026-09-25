@@ -1,130 +1,130 @@
-/// Table de mesures : regroupe tous les KPI du rapport. Ne contient aucune donnee.
+/// Measure table: holds all the report KPIs. Contains no data.
 table _Mesures
 	lineageTag: a3b45a88-e76b-434d-a47d-8dd3a6254bef
 
-	/// Passages annoncés par l'horaire et observables : le dénominateur de tous les taux.
-	measure 'Passages théoriques' = SUM ( fact_ecart[nb_theorique] )
+	/// Stop events announced by the timetable and observable: the denominator of every rate.
+	measure 'Scheduled stop events' = SUM ( fact_ecart[nb_theorique] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: 936c230b-e59f-46c8-ada2-24eb67821901
 
-	/// Passages reconstitués depuis le flux temps réel (après filtres de qualité).
-	measure 'Passages réels' = SUM ( fact_ecart[nb_reel] )
+	/// Stop events reconstructed from the real-time feed (after quality filters).
+	measure 'Observed stop events' = SUM ( fact_ecart[nb_reel] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: d1f9ca61-91bb-47c2-a676-874f50b82c63
 
-	/// Passages théoriques pour lesquels un passage réel a été retrouvé dans la tolérance de la ligne.
-	measure 'Passages appariés' = SUM ( fact_ecart[nb_apparie] )
+	/// Scheduled stop events for which an observed one was found within the line's tolerance.
+	measure 'Matched stop events' = SUM ( fact_ecart[nb_apparie] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: c80d16fc-6b67-494d-9e10-9177f10c2d67
 
-	/// Passages appariés dans la fenêtre -60 / +180 s.
-	measure 'Passages conformes' = SUM ( fact_ecart[nb_conforme] )
+	/// Matched stop events within the -60 / +180 s window.
+	measure 'On-time stop events' = SUM ( fact_ecart[nb_conforme] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: db75217b-7e84-45cf-bf3e-b2c75083a84f
 
-	/// Passages appariés plus de 60 s avant l'horaire.
-	measure 'Passages en avance' = SUM ( fact_ecart[nb_avance] )
+	/// Matched stop events more than 60 s before schedule.
+	measure 'Early stop events' = SUM ( fact_ecart[nb_avance] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: 6190aea2-1c15-4df9-b982-9e3aede350e8
 
-	/// Passages appariés plus de 180 s après l'horaire.
-	measure 'Passages en retard' = SUM ( fact_ecart[nb_retard] )
+	/// Matched stop events more than 180 s after schedule.
+	measure 'Late stop events' = SUM ( fact_ecart[nb_retard] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: 413c0a1f-d256-4a2b-9da4-f3585eabea9f
 
-	/// Passages théoriques sans aucun passage réel retrouvé dans la tolérance.
-	measure 'Passages non appariés' = SUM ( fact_ecart[nb_theo_seul] )
+	/// Scheduled stop events with no observed one found within tolerance.
+	measure 'Unmatched stop events' = SUM ( fact_ecart[nb_theo_seul] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: 64910957-5565-482f-ad01-f756bed427d6
 
-	/// Passages réels sans horaire correspondant. Hors dénominateur.
-	measure 'Réels non appariés' = SUM ( fact_ecart[nb_reel_seul] )
+	/// Observed stop events with no matching schedule. Not in the denominator.
+	measure 'Unmatched observed events' = SUM ( fact_ecart[nb_reel_seul] )
 		formatString: #,0
-		displayFolder: 1. Compteurs
+		displayFolder: 1. Counters
 		lineageTag: 26b6e4cd-16f8-44e2-8ae7-7c15fe1d4ead
 
-	/// KPI principal : part du service annoncé réalisée dans la fenêtre -60 / +180 s.
-	measure 'Taux de conformité' = DIVIDE ( [Passages conformes], [Passages théoriques] )
-		formatString: 0.00 %
-		displayFolder: 2. Taux
+	/// Main KPI: share of the announced service delivered within the -60 / +180 s window.
+	measure 'On-time rate' = DIVIDE ( [On-time stop events], [Scheduled stop events] )
+		formatString: 0.00%
+		displayFolder: 2. Rates
 		lineageTag: 522def82-5647-4149-b15c-d9235a0d5ee8
 
-	/// Couverture : part du service annoncé pour laquelle un écart est mesurable. Dépend de la tolérance : ne pas comparer entre lignes.
-	measure 'Taux d''appariement' = DIVIDE ( [Passages appariés], [Passages théoriques] )
-		formatString: 0.00 %
-		displayFolder: 2. Taux
+	/// Coverage: share of the announced service for which a deviation can be measured. Depends on the tolerance: do not compare across lines.
+	measure 'Matching rate' = DIVIDE ( [Matched stop events], [Scheduled stop events] )
+		formatString: 0.00%
+		displayFolder: 2. Rates
 		lineageTag: ef0b3c9e-bcf6-45c6-936f-5b73350b782d
 
-	/// Poste 2 de la cascade.
-	measure 'Part en avance' = DIVIDE ( [Passages en avance], [Passages théoriques] )
-		formatString: 0.00 %
-		displayFolder: 2. Taux
+	/// Cascade category 2.
+	measure 'Early share' = DIVIDE ( [Early stop events], [Scheduled stop events] )
+		formatString: 0.00%
+		displayFolder: 2. Rates
 		lineageTag: 859e065d-6638-4445-896b-fdb1c11f8559
 
-	/// Poste 3 de la cascade.
-	measure 'Part en retard' = DIVIDE ( [Passages en retard], [Passages théoriques] )
-		formatString: 0.00 %
-		displayFolder: 2. Taux
+	/// Cascade category 3.
+	measure 'Late share' = DIVIDE ( [Late stop events], [Scheduled stop events] )
+		formatString: 0.00%
+		displayFolder: 2. Rates
 		lineageTag: fb057733-d21e-4fd5-9863-39d0a34db278
 
-	/// Poste 4 de la cascade.
-	measure 'Part non appariée' = DIVIDE ( [Passages non appariés], [Passages théoriques] )
-		formatString: 0.00 %
-		displayFolder: 2. Taux
+	/// Cascade category 4.
+	measure 'Not found share' = DIVIDE ( [Unmatched stop events], [Scheduled stop events] )
+		formatString: 0.00%
+		displayFolder: 2. Rates
 		lineageTag: 6a47c6e4-fbda-4889-8511-d9b138d3c442
 
-	/// Doit valoir 0 sous n'importe quel filtre. Outil de vérification, pas à afficher dans le rapport.
-	measure 'Contrôle cascade' = [Passages conformes] + [Passages en avance] + [Passages en retard] + [Passages non appariés] - [Passages théoriques]
+	/// Must equal 0 under any filter. Verification tool, not for display.
+	measure 'Cascade check' = [On-time stop events] + [Early stop events] + [Late stop events] + [Unmatched stop events] - [Scheduled stop events]
 		formatString: #,0
-		displayFolder: 9. Contrôles
+		displayFolder: 9. Checks
 		lineageTag: 4af0c5bc-05d7-4a42-bf16-c5f61ff6845b
 
-	/// Rang de l'arrêt sur la ligne filtrée. Sert uniquement à trier les axes par ordre géographique (piège n°74 : le rang dépend du couple ligne-arrêt).
-	measure 'Rang corridor' = MIN ( dim_desserte[ordre_corridor] )
+	/// Rank of the stop on the filtered line. Only used to sort axes in geographic order (the rank depends on the line-stop pair).
+	measure 'Corridor rank' = MIN ( dim_desserte[ordre_corridor] )
 		formatString: 0
-		displayFolder: 8. Tri
+		displayFolder: 8. Sorting
 		lineageTag: 6753d71b-cadd-472f-ac76-8317f0ce993c
 
-	/// Part du théorique pour le poste affiché (table Cascade_postes). Les 4 parts somment à 100 %.
-	measure 'Part du poste' =
-			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Ordre] )
+	/// Share of the scheduled stop events for the category shown (table Cascade_postes). The 4 shares add up to 100%.
+	measure 'Category share' =
+			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Order] )
 			RETURN
 			    SWITCH (
 			        _ordre,
-			        1, [Taux de conformité],
-			        2, [Part en avance],
-			        3, [Part en retard],
-			        4, [Part non appariée]
+			        1, [On-time rate],
+			        2, [Early share],
+			        3, [Late share],
+			        4, [Not found share]
 			    )
-		formatString: 0.0 %
+		formatString: 0.0%
 		displayFolder: 3. Cascade
 		lineageTag: 608c2217-135a-4962-be21-43011ff8e9a0
 
-	/// Nombre de passages théoriques du poste affiché (pour les info-bulles).
-	measure 'Passages du poste' =
-			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Ordre] )
+	/// Number of scheduled stop events in the category shown (for tooltips).
+	measure 'Category stop events' =
+			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Order] )
 			RETURN
 			    SWITCH (
 			        _ordre,
-			        1, [Passages conformes],
-			        2, [Passages en avance],
-			        3, [Passages en retard],
-			        4, [Passages non appariés]
+			        1, [On-time stop events],
+			        2, [Early stop events],
+			        3, [Late stop events],
+			        4, [Unmatched stop events]
 			    )
 		formatString: #,0
 		displayFolder: 3. Cascade
 		lineageTag: 04e5cf6d-d3ee-43bf-9612-feb97de1f0e0
 
-	/// Couleur du poste, à utiliser en mise en forme conditionnelle (valeur du champ). Identique au thème STIB - Signal.
-	measure 'Couleur du poste' =
-			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Ordre] )
+	/// Colour of the category, for conditional formatting (field value). Same as the STIB - Signal theme.
+	measure 'Category colour' =
+			VAR _ordre = SELECTEDVALUE ( Cascade_postes[Order] )
 			RETURN
 			    SWITCH (
 			        _ordre,
@@ -136,84 +136,84 @@ table _Mesures
 		displayFolder: 3. Cascade
 		lineageTag: 54f3e360-7848-4d94-86dc-abb80e6349fb
 
-	/// Lignes ayant au moins un passage théorique dans le contexte de filtre.
-	measure 'Lignes analysées' =
+	/// Lines with at least one scheduled stop event in the filter context.
+	measure 'Lines analysed' =
 			CALCULATE (
 			    DISTINCTCOUNT ( fact_ecart[ligne_sk] ),
 			    fact_ecart[nb_theorique] = 1
 			)
 		formatString: 0
-		displayFolder: 4. Périmètre
+		displayFolder: 4. Scope
 		lineageTag: 90a3bfeb-01d5-49ed-a375-c9c9ef209b11
 
-	/// Jours de service présents dans le contexte de filtre.
-	measure 'Jours analysés' = DISTINCTCOUNT ( fact_ecart[date_sk] )
+	/// Service days present in the filter context.
+	measure 'Days analysed' = DISTINCTCOUNT ( fact_ecart[date_sk] )
 		formatString: 0
-		displayFolder: 4. Périmètre
+		displayFolder: 4. Scope
 		lineageTag: 25909a0a-c3b9-4dd5-93fc-80fa0f9e6504
 
-	/// Taux de conformité de l'ensemble du réseau, quels que soient les filtres sur les lignes et les modes. Référence fixe pour les comparaisons (64,64 % sans autre filtre).
-	measure 'Conformité réseau' =
+	/// On-time rate of the whole network, whatever the filters on lines and modes. Fixed reference for comparisons (64.64% without other filters).
+	measure 'Network on-time rate' =
 			
 			CALCULATE (
-			    [Taux de conformité],
+			    [On-time rate],
 			    REMOVEFILTERS ( dim_ligne ),
 			    REMOVEFILTERS ( dim_direction )
 			)
-		formatString: 0.00 %
-		displayFolder: 5. Comparaison des lignes
+		formatString: 0.00%
+		displayFolder: 5. Line comparison
 		lineageTag: 7c9725a3-b07e-4c07-ac3f-b4e876bd13be
 
-	/// Écart de conformité à la moyenne réseau, en points de pourcentage. Positif : la ligne fait mieux que le réseau.
-	measure 'Écart au réseau' = ( [Taux de conformité] - [Conformité réseau] ) * 100
+	/// Gap in on-time rate to the network average, in percentage points. Positive: the line does better than the network.
+	measure 'Gap to network average' = ( [On-time rate] - [Network on-time rate] ) * 100
 		formatString: +0.0 " pts";-0.0 " pts";0.0 " pts"
-		displayFolder: 5. Comparaison des lignes
+		displayFolder: 5. Line comparison
 		lineageTag: 70db4564-82a4-474c-bebb-09de4a9a439b
 
-	/// Rang de la ligne sur la conformité parmi les lignes affichées (1 = la plus ponctuelle). ordre_ligne est inclus car line_id est trié par cette colonne.
-	measure 'Rang conformité' =
+	/// Rank of the line on the on-time rate among the lines shown (1 = most punctual). ordre_ligne is included because line_id is sorted by that column.
+	measure 'On-time rank' =
 			IF (
 			    HASONEVALUE ( dim_ligne[line_id] ),
 			    RANKX (
 			        ALLSELECTED ( dim_ligne[line_id], dim_ligne[ordre_ligne] ),
-			        [Taux de conformité],
+			        [On-time rate],
 			        ,
 			        DESC
 			    )
 			)
 		formatString: 0
-		displayFolder: 5. Comparaison des lignes
+		displayFolder: 5. Line comparison
 		lineageTag: 2ae729ae-7294-4ce3-80e3-77fcad0efcb7
 
-	/// Couleur du mode de la ligne affichée (métro violet, tram vert d'eau, bus ardoise). Distincte des couleurs de la cascade, qui codent un statut.
-	measure 'Couleur mode' =
+	/// Colour of the line's mode (metro purple, tram teal, bus slate). Distinct from the cascade colours, which encode a status.
+	measure 'Mode colour' =
 			SWITCH (
 			    SELECTEDVALUE ( dim_ligne[route_type] ),
 			    1, "#6A4C93",
 			    0, "#2E8B7A",
 			    3, "#4F5D75"
 			)
-		displayFolder: 5. Comparaison des lignes
+		displayFolder: 5. Line comparison
 		lineageTag: e1f5da9a-f73c-4cd7-802c-d2af94bd3050
 
-	/// Nombre de lignes du classement (71), indépendamment des filtres sur les lignes. Sert à écrire « 12e sur 71 ».
-	measure 'Lignes classées' =
+	/// Number of ranked lines (71), whatever the filters on lines. Used to write "ranked 12 of 71".
+	measure 'Ranked lines' =
 			CALCULATE (
 			    DISTINCTCOUNT ( dim_ligne[line_id] ),
 			    REMOVEFILTERS ( dim_ligne ),
 			    dim_ligne[dans_classement] = TRUE ()
 			)
 		formatString: 0
-		displayFolder: 5. Comparaison des lignes
+		displayFolder: 5. Line comparison
 		lineageTag: 49fd4923-e327-47e2-a8d5-adca7d251d70
 
-	/// Rang de la ligne sélectionnée parmi les 71 lignes classées, même quand un segment n'en affiche qu'une (contrairement à Rang conformité). Vide si la ligne est hors classement.
-	measure 'Rang réseau' =
+	/// Rank of the selected line among the 71 ranked lines, even when a slicer shows only one (unlike On-time rank). Blank if the line is not ranked.
+	measure 'Network rank' =
 			VAR _ligne = SELECTEDVALUE ( dim_ligne[line_id] )
-			VAR _taux = [Taux de conformité]
+			VAR _taux = [On-time rate]
 			VAR _classees =
 			    CALCULATETABLE (
-			        ADDCOLUMNS ( VALUES ( dim_ligne[line_id] ), "@taux", [Taux de conformité] ),
+			        ADDCOLUMNS ( VALUES ( dim_ligne[line_id] ), "@taux", [On-time rate] ),
 			        REMOVEFILTERS ( dim_ligne ),
 			        dim_ligne[dans_classement] = TRUE ()
 			    )
@@ -224,47 +224,47 @@ table _Mesures
 			        COUNTROWS ( FILTER ( _classees, [@taux] > _taux ) ) + 1
 			    )
 		formatString: 0
-		displayFolder: 5. Comparaison des lignes
+		displayFolder: 5. Line comparison
 		lineageTag: 18fecf97-fe30-443d-9d2d-2fa5a60b3fcc
 
-	/// Taux de conformité, laissé vide sous 200 passages théoriques : évite qu'un arrêt peu desservi s'affiche en rouge ou en vert par hasard (petits effectifs).
-	measure 'Conformité arrêt (fiable)' =
+	/// On-time rate, left blank under 200 scheduled stop events: avoids a rarely served stop showing red or green by chance (small numbers).
+	measure 'Stop on-time rate (reliable)' =
 			IF (
-			    [Passages théoriques] >= 200,
-			    [Taux de conformité]
+			    [Scheduled stop events] >= 200,
+			    [On-time rate]
 			)
-		formatString: 0.0 %
-		displayFolder: 6. Zoom ligne
+		formatString: 0.0%
+		displayFolder: 6. Line zoom
 		lineageTag: 6bd83f2a-89c2-4818-a0a4-d3ed7237d1fd
 
-	/// Rang géographique de l'arrêt dans int_profil_arret (ligne et sens filtrés). Sert à trier l'axe du profil ; même logique que Rang corridor.
-	measure 'Ordre profil' = MIN ( int_profil_arret[ordre_geo] )
+	/// Geographic rank of the stop in int_profil_arret (line and direction filtered). Used to sort the profile axis; same logic as Corridor rank.
+	measure 'Profile order' = MIN ( int_profil_arret[ordre_geo] )
 		formatString: 0
-		displayFolder: 8. Tri
+		displayFolder: 8. Sorting
 		lineageTag: f5a6f8a9-28ee-4774-8c0a-c814869a9032
 
-	/// Titre dynamique de la page Zoom ligne. Le taux et le rang tiennent compte du sens sélectionné.
-	measure 'Titre zoom' =
+	/// Dynamic title of the Line zoom page. The rate and the rank take the selected direction into account.
+	measure 'Zoom title' =
 			
 			VAR _ligne = SELECTEDVALUE ( dim_ligne[line_id] )
-			VAR _taux = CALCULATE ( [Taux de conformité], REMOVEFILTERS ( dim_direction ) )
-			VAR _rang = CALCULATE ( [Rang réseau], REMOVEFILTERS ( dim_direction ) )
+			VAR _taux = CALCULATE ( [On-time rate], REMOVEFILTERS ( dim_direction ) )
+			VAR _rang = CALCULATE ( [Network rank], REMOVEFILTERS ( dim_direction ) )
 			RETURN
 			    IF (
 			        ISBLANK ( _ligne ),
-			        "Choisissez une ligne",
-			        "Ligne " & _ligne & " : " & FORMAT ( _taux, "0.0 %" ) & " à l'heure"
+			        "Choose a line",
+			        "Line " & _ligne & ": " & FORMAT ( _taux, "0.0%" ) & " on time"
 			            & IF (
 			                ISBLANK ( _rang ),
-			                " (hors classement)",
-			                ", " & _rang & IF ( _rang = 1, "re", "e" ) & " sur " & [Lignes classées]
+			                " (not ranked)",
+			                ", ranked " & _rang & " of " & [Ranked lines]
 			            )
 			    )
-		displayFolder: 6. Zoom ligne
+		displayFolder: 6. Line zoom
 		lineageTag: c66903d6-303b-4654-b6bf-5f21bcfec94f
 
-	/// Écart médian (s) entre durée réelle et durée prévue d'un tronçon, au grain du tronçon. Ne garde que les tronçons entre arrêts consécutifs (saut_de_rang <= 10) et observés sur au moins 100 courses ; vide sinon, jamais additionné.
-	measure 'Delta médian tronçon' =
+	/// Median gap (s) between actual and scheduled running time of a segment, at segment grain. Keeps only segments between consecutive stops (saut_de_rang <= 10) observed on at least 100 trips; blank otherwise, never summed.
+	measure 'Segment median delta' =
 			VAR _t =
 			    FILTER (
 			        int_segment,
@@ -274,11 +274,11 @@ table _Mesures
 			RETURN
 			    IF ( COUNTROWS ( _t ) = 1, MAXX ( _t, int_segment[delta_median] ) )
 		formatString: +0 " s";-0 " s";0 " s"
-		displayFolder: 6. Zoom ligne
+		displayFolder: 6. Line zoom
 		lineageTag: 48991f90-6235-48a2-872f-0064e110ece3
 
-	/// Premier et dernier arrêt du parcours pour la ligne et le sens sélectionnés (d'après int_profil_arret). Rend lisible le libellé générique aller / retour.
-	measure Parcours =
+	/// First and last stop of the route for the selected line and direction (from int_profil_arret). Makes the generic outbound / inbound label readable.
+	measure Route =
 			
 			VAR _ligne = SELECTEDVALUE ( dim_ligne[line_id] )
 			VAR _sens = SELECTEDVALUE ( dim_direction[direction_id] )
@@ -287,7 +287,7 @@ table _Mesures
 			        TOPN (
 			            1,
 			            FILTER (
-			                ADDCOLUMNS ( VALUES ( dim_course[trip_headsign] ), "@n", [Passages théoriques] ),
+			                ADDCOLUMNS ( VALUES ( dim_course[trip_headsign] ), "@n", [Scheduled stop events] ),
 			                [@n] > 0
 			            ),
 			            [@n], DESC
@@ -300,7 +300,7 @@ table _Mesures
 			            1,
 			            CALCULATETABLE (
 			                FILTER (
-			                    ADDCOLUMNS ( VALUES ( dim_course[trip_headsign] ), "@n", [Passages théoriques] ),
+			                    ADDCOLUMNS ( VALUES ( dim_course[trip_headsign] ), "@n", [Scheduled stop events] ),
 			                    [@n] > 0
 			                ),
 			                REMOVEFILTERS ( dim_direction ),
@@ -313,25 +313,25 @@ table _Mesures
 			RETURN
 			    IF (
 			        ISBLANK ( _ligne ) || ISBLANK ( _sens ) || ISBLANK ( _vers ),
-			        "Choisissez une ligne et un sens",
-			        "De " & _de & " vers " & _vers
+			        "Choose a line and a direction",
+			        "From " & _de & " to " & _vers
 			    )
-		displayFolder: 6. Zoom ligne
+		displayFolder: 6. Line zoom
 		lineageTag: f46034d1-1073-404c-813c-3d7ad668e1a2
 
-	measure 'Arrêt habituel' =
+	measure 'Regular stop' =
 			
 			VAR _n = SUM ( int_profil_arret[n_passages] )
 			VAR _max = MAXX ( ALLSELECTED ( int_profil_arret ), int_profil_arret[n_passages] )
 			RETURN IF ( _n >= 0.1 * _max, 1, 0 )
 		formatString: 0
-		displayFolder: 6. Zoom ligne
+		displayFolder: 6. Line zoom
 		lineageTag: 42a1564c-4066-455c-ad98-4a20fab04bef
 
-	/// Part des passages théoriques appariés avec un écart compris entre -X et +X secondes, X étant la tolérance affichée (table Sensibilite_tolerance). Même dénominateur que le Taux de conformité.
-	measure 'Conformité à tolérance' =
+	/// Share of scheduled stop events matched with a deviation between -X and +X seconds, X being the tolerance shown (table Sensibilite_tolerance). Same denominator as the On-time rate.
+	measure 'On-time rate at tolerance' =
 			
-			VAR _x = SELECTEDVALUE ( Sensibilite_tolerance[Tolérance (s)] )
+			VAR _x = SELECTEDVALUE ( Sensibilite_tolerance[Tolerance (s)] )
 			RETURN
 			    IF (
 			        NOT ISBLANK ( _x ),
@@ -340,66 +340,66 @@ table _Mesures
 			                SUM ( fact_ecart[nb_apparie] ),
 			                fact_ecart[retard_sec] >= -_x && fact_ecart[retard_sec] <= _x
 			            ),
-			            [Passages théoriques]
+			            [Scheduled stop events]
 			        )
 			    )
-		formatString: 0.0 %
-		displayFolder: 7. Méthode
+		formatString: 0.0%
+		displayFolder: 7. Method
 		lineageTag: 7dff6a81-fd89-46de-834a-c0c0c4b22e7f
 
-	/// Part de chaque cause dans les passages non appariés (416 343 sur 52 jours).
-	measure 'Part des non-appariés' =
+	/// Share of each cause among unmatched stop events (416,343 over 52 days).
+	measure 'Share of unmatched' =
 			DIVIDE (
 			    SUM ( diag_non_apparies[nb_passages] ),
 			    CALCULATE ( SUM ( diag_non_apparies[nb_passages] ), REMOVEFILTERS ( diag_non_apparies ) )
 			)
-		formatString: 0.0 %
-		displayFolder: 7. Méthode
+		formatString: 0.0%
+		displayFolder: 7. Method
 		lineageTag: b535a31f-5a88-43ea-97e7-69d27d7efe6d
 
-	measure 'Couleur nature' =
+	measure 'Cause type colour' =
 			
 			SWITCH (
 			    SELECTEDVALUE ( diag_non_apparies[cause_nature] ),
 			    "Service", "#4F5D75",
 			    "#9AA5B1"
 			)
-		displayFolder: 7. Méthode
+		displayFolder: 7. Method
 		lineageTag: 20b78be6-310e-4819-b7ff-d3f5c6a9643d
 
-	/// Taux de conformité recalculé sur les 7 jours qui se terminent à la date affichée. Moyenne pondérée (conformes / théoriques sur toute la fenêtre), pas moyenne de 7 taux. Fenêtre incomplète au début de la période.
-	measure 'Conformité 7 jours' =
+	/// On-time rate over the 7 days ending on the date shown. Weighted (on time / scheduled over the whole window), not an average of 7 rates. Incomplete window at the start of the period.
+	measure '7-day on-time rate' =
 			CALCULATE (
-			    [Taux de conformité],
+			    [On-time rate],
 			    DATESINPERIOD ( dim_date[date_service], MAX ( dim_date[date_service] ), -7, DAY )
 			)
-		formatString: 0.0 %
-		displayFolder: 10. Temporel
+		formatString: 0.0%
+		displayFolder: 10. Time
 		lineageTag: d1da6415-352c-43d6-a000-1827e2edcb2d
 
-	/// Valeur de l'indicateur choisi dans Choix_indicateur (conformité par défaut). Vide sous 100 passages théoriques : sur un petit effectif, une case colorerait au hasard.
-	measure 'Valeur indicateur' =
-			VAR _ordre = SELECTEDVALUE ( Choix_indicateur[Ordre], 1 )
+	/// Value of the indicator chosen in Choix_indicateur (on-time rate by default). Blank under 100 scheduled stop events: on small numbers, a cell would be coloured by chance.
+	measure 'Indicator value' =
+			VAR _ordre = SELECTEDVALUE ( Choix_indicateur[Order], 1 )
 			VAR _valeur =
 			    SWITCH (
 			        _ordre,
-			        1, [Taux de conformité],
-			        2, [Part en avance],
-			        3, [Part en retard],
-			        4, [Part non appariée]
+			        1, [On-time rate],
+			        2, [Early share],
+			        3, [Late share],
+			        4, [Not found share]
 			    )
 			RETURN
-			    IF ( [Passages théoriques] >= 100, _valeur )
-		formatString: 0.0 %
-		displayFolder: 11. Explorer
+			    IF ( [Scheduled stop events] >= 100, _valeur )
+		formatString: 0.0%
+		displayFolder: 11. Explore
 		lineageTag: aa692828-03d1-4f69-8e1e-90b9140b3b4b
 
-	/// Écart, en points, entre la valeur de la case et celle du réseau entier pour le même indicateur (filtres de période conservés).
-	measure 'Écart au réseau (indicateur)' =
-			VAR _case = [Valeur indicateur]
+	/// Gap, in points, between the cell value and the whole network for the same indicator (period filters kept).
+	measure 'Gap to network (indicator)' =
+			VAR _case = [Indicator value]
 			VAR _reseau =
 			    CALCULATE (
-			        [Valeur indicateur],
+			        [Indicator value],
 			        REMOVEFILTERS ( dim_ligne ),
 			        REMOVEFILTERS ( dim_direction ),
 			        REMOVEFILTERS ( dim_heure ),
@@ -409,13 +409,13 @@ table _Mesures
 			RETURN
 			    IF ( NOT ISBLANK ( _case ), ( _case - _reseau ) * 100 )
 		formatString: +0.0 " pts";-0.0 " pts";0.0 " pts"
-		displayFolder: 11. Explorer
+		displayFolder: 11. Explore
 		lineageTag: efeefa6c-95fc-49ec-b389-358e1932cb18
 
-	/// Couleur de la case : bleu si la case fait mieux que le réseau, rouge si elle fait moins bien, gris si l'écart est inférieur à 2 points. Le sens est inversé pour les indicateurs où une valeur élevée est mauvaise (avance, retard, non retrouvé).
-	measure 'Couleur case' =
-			VAR _ecart = [Écart au réseau (indicateur)]
-			VAR _sens = SELECTEDVALUE ( Choix_indicateur[Sens favorable], 1 )
+	/// Cell colour: blue if the cell does better than the network, red if worse, grey if the gap is under 2 points. Reversed for indicators where a high value is bad (early, late, not found).
+	measure 'Cell colour' =
+			VAR _ecart = [Gap to network (indicator)]
+			VAR _sens = SELECTEDVALUE ( Choix_indicateur[Favourable direction], 1 )
 			VAR _oriente = _ecart * _sens
 			RETURN
 			    SWITCH (
@@ -427,60 +427,60 @@ table _Mesures
 			        _oriente > -5, "#E8A6A1",
 			        "#C8433A"
 			    )
-		displayFolder: 11. Explorer
+		displayFolder: 11. Explore
 		lineageTag: 8c831b1d-d738-4929-9864-723dc3baed9d
 
-	/// Conformité attendue à l'arrêt compte tenu des lignes qui le desservent : conformité de chaque ligne sur tout son parcours, pondérée par ses passages à cet arrêt. Référence « si l'arrêt n'avait aucun effet propre ».
-	measure 'Conformité attendue (arrêt)' =
-			VAR _total = [Passages théoriques]
+	/// Expected on-time rate at the stop given the lines serving it: on-time rate of each line over its whole route, weighted by its stop events at this stop. Reference "if the stop had no effect of its own".
+	measure 'Expected on-time rate (stop)' =
+			VAR _total = [Scheduled stop events]
 			VAR _pondere =
 			    SUMX (
 			        VALUES ( dim_ligne[line_id] ),
-			        [Passages théoriques]
+			        [Scheduled stop events]
 			            * CALCULATE (
-			                [Taux de conformité],
+			                [On-time rate],
 			                REMOVEFILTERS ( dim_arret ),
 			                REMOVEFILTERS ( dim_desserte )
 			            )
 			    )
 			RETURN
 			    DIVIDE ( _pondere, _total )
-		formatString: 0.0 %
-		displayFolder: 12. Arrêts
+		formatString: 0.0%
+		displayFolder: 12. Stops
 		lineageTag: e2470905-4f36-4815-ae40-8962de5e8be2
 
-	/// Écart en points entre la conformité observée à l'arrêt et celle attendue d'après les lignes qui y passent. Négatif : l'arrêt fait moins bien que ses lignes ailleurs. Vide sous 200 passages.
-	measure 'Effet propre de l''arrêt' =
+	/// Gap in points between the on-time rate observed at the stop and the rate expected from the lines serving it. Negative: the stop does worse than its lines elsewhere. Blank under 200 stop events.
+	measure 'Stop-specific effect' =
 			
-			VAR _couverture = DIVIDE ( [Passages appariés], [Passages théoriques] )
+			VAR _couverture = DIVIDE ( [Matched stop events], [Scheduled stop events] )
 			RETURN
 			    IF (
-			        [Passages théoriques] >= 200 && _couverture >= 0.5,
-			        ( [Taux de conformité] - [Conformité attendue (arrêt)] ) * 100
+			        [Scheduled stop events] >= 200 && _couverture >= 0.5,
+			        ( [On-time rate] - [Expected on-time rate (stop)] ) * 100
 			    )
 		formatString: +0.0 " pts";-0.0 " pts";0.0 " pts"
-		displayFolder: 12. Arrêts
+		displayFolder: 12. Stops
 		lineageTag: 0dd966e8-4c0f-4632-b74b-8dd1cff63303
 
-	/// Nombre de lignes desservant l'arrêt affiché (colonne SQL nb_lignes_arret). Sert d'axe au nuage de points.
-	measure 'Lignes à l''arrêt' =
+	/// Number of lines serving the stop shown (SQL column nb_lignes_arret).
+	measure 'Lines at stop' =
 			
 			CALCULATE (
 			    MAX ( dim_arret[nb_lignes_arret] ),
 			    ALLEXCEPT ( dim_arret, dim_arret[stop_name] )
 			)
 		formatString: 0
-		displayFolder: 12. Arrêts
+		displayFolder: 12. Stops
 		lineageTag: 25916a80-a5d3-4efa-a355-d296b7d8cd00
 
-	/// Nombre d'arrêts dont l'effet propre tombe dans la tranche affichée (table Tranches_effet). Les arrêts non évalués (moins de 200 passages ou moins de 50 % d'appariement) ne sont comptés nulle part.
-	measure 'Arrêts dans la tranche' =
-			VAR _basse = SELECTEDVALUE ( Tranches_effet[Borne basse] )
-			VAR _haute = SELECTEDVALUE ( Tranches_effet[Borne haute] )
+	/// Number of stops whose stop-specific effect falls in the range shown (table Tranches_effet). Stops not evaluated (under 200 stop events or under 50% matching) are not counted.
+	measure 'Stops in range' =
+			VAR _basse = SELECTEDVALUE ( Tranches_effet[Lower bound] )
+			VAR _haute = SELECTEDVALUE ( Tranches_effet[Upper bound] )
 			VAR _arrets =
 			    ADDCOLUMNS (
 			        VALUES ( dim_arret[stop_name] ),
-			        "@effet", [Effet propre de l'arrêt]
+			        "@effet", [Stop-specific effect]
 			    )
 			RETURN
 			    IF (
@@ -495,19 +495,19 @@ table _Mesures
 			        )
 			    )
 		formatString: #,0
-		displayFolder: 12. Arrêts
+		displayFolder: 12. Stops
 		lineageTag: e2fe414e-918c-4ceb-b7cb-260ba8a90dc6
 
-	/// Nombre d'arrêts évalués (effet propre non vide) dans le contexte courant.
-	measure 'Arrêts évalués' =
+	/// Number of stops evaluated (non-blank stop-specific effect) in the current context.
+	measure 'Stops evaluated' =
 			COUNTROWS (
 			    FILTER (
-			        ADDCOLUMNS ( VALUES ( dim_arret[stop_name] ), "@effet", [Effet propre de l'arrêt] ),
+			        ADDCOLUMNS ( VALUES ( dim_arret[stop_name] ), "@effet", [Stop-specific effect] ),
 			        NOT ISBLANK ( [@effet] )
 			    )
 			)
 		formatString: #,0
-		displayFolder: 12. Arrêts
+		displayFolder: 12. Stops
 		lineageTag: 89ae9ce9-3a22-4ae6-9e03-79cb5fe90c7b
 
 	column _

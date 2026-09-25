@@ -19,6 +19,9 @@
            sans le N, SQL Server interprete la chaine dans la page de codes
            de la base, et les accents peuvent etre alteres.
 
+   V4 - 25/09/2026 : libelles en anglais (le rapport Power BI est redige en
+           anglais). cause_nature : 'Service' ou 'Method'.
+
    /!\ REGLES DUPLIQUEES
            Les filtres de qualite de la cause 2 (nb_obs >= 2, fraicheur
            entre -120 et +180 s) et les types de mapping retenus
@@ -48,7 +51,7 @@ GO
 CREATE TABLE dbo.diag_non_apparies (
     cause_id        TINYINT       NOT NULL PRIMARY KEY,
     cause_libelle   NVARCHAR(60)  NOT NULL,
-    cause_nature    NVARCHAR(20)  NOT NULL,   -- N'Service' ou N'Méthode'
+    cause_nature    NVARCHAR(20)  NOT NULL,   -- N'Service' ou N'Method'
     nb_passages     INT           NOT NULL,
     ordre_affichage TINYINT       NOT NULL
 );
@@ -133,10 +136,10 @@ SELECT      r.cause_id,
             nb_passages = COUNT(c.cause_id),
             r.ordre_affichage
 FROM        (VALUES
-                (4, N'Aucun passage réel à portée',        N'Service', 1),
-                (2, N'Écarté par les filtres de qualité',  N'Méthode', 2),
-                (3, N'Concurrence de l''algorithme',       N'Méthode', 3),
-                (1, N'Aucun passage collecté ce jour-là',  N'Méthode', 4)
+                (4, N'No observed vehicle within range',  N'Service', 1),
+                (2, N'Removed by quality filters',        N'Method',  2),
+                (3, N'Lost to a competing match',         N'Method',  3),
+                (1, N'No data collected that day',        N'Method',  4)
             ) AS r (cause_id, cause_libelle, cause_nature, ordre_affichage)
 LEFT JOIN   classe AS c ON c.cause_id = r.cause_id
 GROUP BY    r.cause_id, r.cause_libelle, r.cause_nature, r.ordre_affichage;

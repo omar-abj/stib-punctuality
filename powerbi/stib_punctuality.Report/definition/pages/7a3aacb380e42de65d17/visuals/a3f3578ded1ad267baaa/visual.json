@@ -23,11 +23,11 @@
                       "Entity": "Choix_indicateur"
                     }
                   },
-                  "Property": "Indicateur"
+                  "Property": "Indicator"
                 }
               },
-              "queryRef": "Choix_indicateur.Indicateur",
-              "nativeQueryRef": "Indicateur",
+              "queryRef": "Choix_indicateur.Indicator",
+              "nativeQueryRef": "Indicator",
               "active": true
             }
           ]

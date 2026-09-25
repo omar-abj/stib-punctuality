@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "dim_arret.stop_name",
-              "nativeQueryRef": "Arrêt",
-              "displayName": "Arrêt"
+              "nativeQueryRef": "Stop",
+              "displayName": "Stop"
             },
             {
               "field": {
@@ -42,8 +42,8 @@
                 }
               },
               "queryRef": "dim_ligne.line_id",
-              "nativeQueryRef": "Ligne",
-              "displayName": "Ligne"
+              "nativeQueryRef": "Line",
+              "displayName": "Line"
             },
             {
               "field": {
@@ -53,11 +53,11 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Passages théoriques"
+                  "Property": "Scheduled stop events"
                 }
               },
-              "queryRef": "_Mesures.Passages théoriques",
-              "nativeQueryRef": "Passages théoriques"
+              "queryRef": "_Mesures.Scheduled stop events",
+              "nativeQueryRef": "Scheduled stop events"
             },
             {
               "field": {
@@ -67,12 +67,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Valeur indicateur"
+                  "Property": "Indicator value"
                 }
               },
-              "queryRef": "_Mesures.Valeur indicateur",
-              "nativeQueryRef": "Indicateur",
-              "displayName": "Indicateur"
+              "queryRef": "_Mesures.Indicator value",
+              "nativeQueryRef": "Indicator",
+              "displayName": "Indicator"
             },
             {
               "field": {
@@ -82,12 +82,12 @@
                       "Entity": "_Mesures"
                     }
                   },
-                  "Property": "Écart au réseau (indicateur)"
+                  "Property": "Gap to network (indicator)"
                 }
               },
-              "queryRef": "_Mesures.Écart au réseau (indicateur)",
-              "nativeQueryRef": "Écart au réseau",
-              "displayName": "Écart au réseau"
+              "queryRef": "_Mesures.Gap to network (indicator)",
+              "nativeQueryRef": "Gap to network",
+              "displayName": "Gap to network"
             }
           ]
         }
@@ -102,7 +102,7 @@
                     "Entity": "_Mesures"
                   }
                 },
-                "Property": "Écart au réseau (indicateur)"
+                "Property": "Gap to network (indicator)"
               }
             },
             "direction": "Ascending"
@@ -123,7 +123,7 @@
                 "Entity": "_Mesures"
               }
             },
-            "Property": "Passages théoriques"
+            "Property": "Scheduled stop events"
           }
         },
         "type": "Advanced",
@@ -148,7 +148,7 @@
                           "Source": "_"
                         }
                       },
-                      "Property": "Passages théoriques"
+                      "Property": "Scheduled stop events"
                     }
                   },
                   "Right": {

@@ -9,7 +9,7 @@
 -- ⚠️ ÉTAT DES DONNÉES au 25/08/2026 : JUILLET SEULEMENT.
 --    Les 13 jours d'août pointeront sur meteo_sk = -1.
 --    Rechargement prévu début septembre (consolidation ERA5) :
---    relancer collecte_meteo.py puis ce script. Rien d'autre à toucher.
+--    relancer python/import_meteo.ipynb puis ce script. Rien d'autre à toucher.
 --
 -- ⚠️ La variance mesurée sur juillet est FAIBLE :
 --    - pluie : 0 heure > 1 mm sur 155 heures de fenêtre

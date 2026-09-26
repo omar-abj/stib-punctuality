@@ -46,7 +46,7 @@ GO
 SET NOCOUNT ON;
 SET XACT_ABORT ON;
 
-DECLARE @date_fin DATE = '2026-08-26';   -- <<< PASSE A. Mettre '2026-08-26' pour la passe B.
+DECLARE @date_fin DATE = '2026-08-26';   -- <<< PASSE B (52 jours). Mettre '2026-08-18' pour la passe A.
 
 DROP TABLE IF EXISTS dbo.wrk_jours;
 

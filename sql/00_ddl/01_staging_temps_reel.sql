@@ -2,7 +2,7 @@
   TFE STIB - 00_ddl/01_staging_temps_reel.sql
   ----------------------------------------------------------------------------
   OBJET : creer les tables qui recoivent le flux temps reel de l'API STIB.
-          Alimentees par 10_load/collecte.py (toutes les 3 minutes,
+          Alimentees par python/collecte.py (toutes les 3 minutes,
           09:00 -> 14:00, du 01/07 au 26/08/2026).
 
   /!\ CE SCRIPT NE SUPPRIME JAMAIS RIEN

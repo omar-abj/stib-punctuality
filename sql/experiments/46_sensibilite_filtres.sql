@@ -1,5 +1,5 @@
 /*=============================================================================
-  TFE STIB - 20_transform/46_sensibilite_filtres.sql
+  TFE STIB - experiments/46_sensibilite_filtres.sql
   ----------------------------------------------------------------------------
   OBJET : mesurer le COUT des filtres de qualite appliques au vivier reel
           (nb_obs >= 2 ET fraicheur_sec BETWEEN -120 AND 180) sur le taux
@@ -17,6 +17,11 @@
   ENTREES  : int_passage_theorique, wrk_passages, ref_feed_periode,
              map_destination  (identiques a Ligne_25.sql)
   SORTIE   : dbo.int_appariement_sensib   (une colonne 'variante' en plus)
+
+  NB : Ligne_25.sql est l'ancien nom de 20_transform/45_int_appariement.sql
+  (renomme le 27/08). Ce script reprend la version du 27/08 : il a servi
+  pendant la phase de developpement sur la ligne 25 et n'est pas rejoue
+  par la chaine.
 
   NON DESTRUCTIF : dbo.int_appariement N'EST PAS TOUCHEE. fact_ecart et
                    93_checks_fact_ecart.sql restent rejouables a tout moment.

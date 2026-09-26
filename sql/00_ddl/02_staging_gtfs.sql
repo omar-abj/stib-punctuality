@@ -2,7 +2,7 @@
   TFE STIB - 00_ddl/02_staging_gtfs.sql
   ----------------------------------------------------------------------------
   OBJET : creer les six tables de l'horaire theorique GTFS, avec leurs cles
-          et les index de travail. Alimentees par 10_load/import_gtfs.ipynb
+          et les index de travail. Alimentees par python/import_gtfs.ipynb
           (trois feeds : 2_15, 2_16, 2_18).
 
   POURQUOI feed_version DANS TOUTES LES CLES

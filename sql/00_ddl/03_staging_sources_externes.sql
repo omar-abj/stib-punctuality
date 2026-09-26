@@ -5,13 +5,13 @@
 
     staging_meteo              Open-Meteo (ERA5), 1 ligne = 1 heure,
                                heure locale de Bruxelles
-                               -> 10_load/import_meteo.ipynb
+                               -> python/import_meteo.ipynb
     staging_line_exploitation  type d'exploitation par ligne
-                               -> 10_load/import_exploitation.ipynb
+                               -> python/import_exploitation.ipynb
     staging_secteur_stat       Statbel : population et superficie par
                                secteur statistique
     staging_revenu_commune     Statbel : revenu median par commune
-                               -> 10_load/import_demographie.ipynb
+                               -> python/import_statbel.ipynb
 
   Tout est en texte, comme recu. Le typage est fait par les dimensions
   (TRY_CAST dans 56_dim_meteo.sql par exemple), pas au chargement.

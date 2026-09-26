@@ -253,7 +253,7 @@ table _Mesures
 			    IF (
 			        ISBLANK ( _ligne ),
 			        "Choose a line",
-			        "Line " & _ligne & ": " & FORMAT ( _taux, "0.0%" ) & " on time"
+			        "Line " & _ligne & ": " & FORMAT ( _taux, "0.0%", "en-US" ) & " on time"
 			            & IF (
 			                ISBLANK ( _rang ),
 			                " (not ranked)",

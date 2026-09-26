@@ -1,7 +1,7 @@
 model Model
 	culture: fr-FR
 	defaultPowerBIDataSourceVersion: powerBI_V3
-	sourceQueryCulture: fr-BE
+	sourceQueryCulture: en-US
 	valueFilterBehavior: independent
 	dataAccessOptions
 		legacyRedirects

@@ -6,16 +6,19 @@
 -- Source: staging_meteo (ERA5 via Open-Meteo, heure locale
 --         Europe/Brussels — VÉRIFIÉ : minimum thermique à 6h)
 --
--- ⚠️ ÉTAT DES DONNÉES au 25/08/2026 : JUILLET SEULEMENT.
---    Les 13 jours d'août pointeront sur meteo_sk = -1.
---    Rechargement prévu début septembre (consolidation ERA5) :
+-- ÉTAT DES DONNÉES : période complète (juillet et août).
+--    Au 25/08/2026, seul juillet était chargé ; août a été rechargé
+--    en septembre, après consolidation ERA5. Pour recharger :
 --    relancer python/import_meteo.ipynb puis ce script. Rien d'autre à toucher.
 --
--- ⚠️ La variance mesurée sur juillet est FAIBLE :
+-- ⚠️ La variance mesurée est FAIBLE. Premier constat sur juillet :
 --    - pluie : 0 heure > 1 mm sur 155 heures de fenêtre
 --    - chaleur : 5 jours >= 28 °C, dont 2 NON COLLECTÉS (11-12/07)
---    La dimension existe ; la décision d'en faire un axe d'analyse
---    reste ouverte jusqu'à la mesure sur 44 jours.
+--    DÉCISION : la météo n'est PAS un axe d'analyse. Mesurée ensuite
+--    sur la période complète, à l'échelle horaire et journalière, sa
+--    variance ne permet pas de séparer un effet météo d'un effet
+--    calendaire. Résultat négatif documenté (docs/decisions.md) ;
+--    la dimension reste dans le modèle.
 --
 -- ⚠️ Piège n°15 — colinéarité : ne JAMAIS utiliser ensemble
 --    temperature_2m + apparent_temp, ni vent_kmh + rafales_kmh,

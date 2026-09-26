@@ -7,10 +7,11 @@
 
    V1 - 19/09/2026 : recreee a l'identique du modele Power BI (fichier
         d'origine introuvable). 2 lignes, TINYINT.
-   V2 - 19/09/2026 : ajout du MEMBRE INCONNU (-1), comme toutes les autres
-        dimensions. Il recoit les passages dont la desserte est inconnue
-        (desserte_sk = -1). TINYINT (0 a 255) ne stocke pas -1 : passage
-        en SMALLINT.
+   V2 - 19/09/2026 : ajout du MEMBRE INCONNU (-1), comme dim_desserte,
+        dim_course et dim_meteo (dim_date, dim_heure, dim_ligne et
+        dim_arret n'en ont pas, volontairement). Il recoit les passages
+        dont la desserte est inconnue (desserte_sk = -1). TINYINT (0 a 255)
+        ne stocke pas -1 : passage en SMALLINT.
 
    V3 - 25/09/2026 : libelles en anglais (affiches dans le rapport).
 

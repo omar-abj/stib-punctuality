@@ -3,13 +3,48 @@
   ----------------------------------------------------------------------------
   A lancer APRES 60_fact_ecart.sql.
 
+  CE QUE CES CONTROLES VERIFIENT, ET CE QU'ILS NE VERIFIENT PAS
+  ----------------------------------------------------------------------------
+  Ils ne disent pas si 64,64 % est la "vraie" ponctualite : ce chiffre
+  depend de choix (fenetre, tolerance, filtres). Ils verifient que la
+  chaine applique CORRECTEMENT ces choix. Trois familles :
+    INVARIANTS        vrais par construction, quels que soient les choix
+                      (G1, G2, G4 course, G6, G7, G9). Un echec = un bug.
+    REPRODUCTIBILITE  memes donnees + memes choix = memes chiffres
+                      (G3, G3b, G3c, G4, G5, G8). Un ecart = quelque chose
+                      a change dans les donnees ou dans un script.
+    PHOTOGRAPHIE      G10, a conserver d'un rejeu a l'autre.
+
   REECRIT LE 03/09 - l'ancienne version portait les valeurs de la
   ligne 25 a T = 240 s. Elle signalait des echecs partout alors que
   tout allait bien. Un controle dont les cibles sont perimees est
   pire qu'aucun controle : il apprend a ignorer les alertes.
 
   ----------------------------------------------------------------------------
+  VALEURS DE REFERENCE - PASSE B, 52 jours (1er juillet -> 26 aout 2026)
+  == REFERENCE ACTUELLE ==
+  ----------------------------------------------------------------------------
+  Mesurees le 26/09/2026. Tous les invariants passent.
+
+      fact_ecart                 3 667 714
+      nb_theorique               3 428 704
+      nb_reel                    3 251 371
+      nb_apparie                 3 012 361
+      nb_theo_seul                 416 343
+      nb_reel_seul                 239 010
+      taux d'appariement             87,86 %   <- passages RETROUVES
+      taux de conformite             64,64 %   <- passages A L'HEURE
+      ligne 25 : appariement         95,61 %
+      ligne 25 : conformite          65,00 %
+      course_sk = -1               239 010   (= les reels seuls)
+      desserte_sk = -1              49 958
+      meteo_sk = -1                      0   (aout recharge)
+      retard_sec                   -300 / +300
+      PATRIE <-> MEISER              +24 s (dir. 0) / +22 s (dir. 1)
+
+  ----------------------------------------------------------------------------
   VALEURS DE REFERENCE - PASSE A, 44 jours (1er juillet -> 18 aout 2026)
+  == HISTORIQUE, conservees pour comparaison ==
   ----------------------------------------------------------------------------
   Mesurees le 03/09 sur ce rejeu, coherentes avec le 27/08 a 484
   lignes pres (voir G0 ci-dessous).
@@ -36,24 +71,23 @@
   APPARIEMENT  = SUM(nb_apparie)  / SUM(nb_theorique)
       "le passage annonce a-t-il ete RETROUVE dans le flux ?"
       Mesure de COUVERTURE : la part du theorique sur laquelle un
-      differentiel de retard est calculable. Reseau 88,69 %.
+      differentiel de retard est calculable. Reseau 87,86 %.
 
   CONFORMITE   = SUM(nb_conforme) / SUM(nb_theorique)
       "le passage a-t-il eu lieu DANS LA FENETRE -60/+180 s ?"
       LE KPI DU MEMOIRE. Un passage non apparie y est non conforme,
-      au meme titre qu'un apparie hors fenetre. Reseau 65,06 %.
+      au meme titre qu'un apparie hors fenetre. Reseau 64,64 %.
 
-  L'ecart entre les deux (ligne 25 : 95,86 % contre 64,40 %) est
+  L'ecart entre les deux (ligne 25 : 95,61 % contre 65,00 %) est
   constitue des passages RETROUVES mais HORS FENETRE. Il ne signale
   aucune anomalie : ce sont deux questions differentes.
 
-  ⚠️ A NETTOYER DANS etat-du-projet.md : les chiffres 95,86 % et
-     88,70 % y apparaissent sans toujours preciser lequel des deux
-     indicateurs est designe. Un jury demandera lequel.
+  ⚠️ Toujours nommer l'indicateur : "95,61 %" seul ne dit pas s'il
+     s'agit de l'appariement ou de la conformite.
 
-  ⚠️ SI TU LANCES LA PASSE B (52 jours), TOUTES CES CIBLES CHANGENT.
-     Noter les nouvelles ici, dans un second bloc, sans effacer
-     celles-ci : la comparaison des deux jeux EST le resultat.
+  COMPARAISON DES DEUX PASSES : le KPI reseau passe de 65,06 % a
+  64,64 % (-0,42 pt) en ajoutant 8 jours d'aout. Le resultat spatial
+  PATRIE <-> MEISER tient (+24 / +22 s contre +24 / +24 s).
 =============================================================================*/
 
 USE TFE_STIB;
@@ -84,7 +118,7 @@ SET NOCOUNT ON;
 
 
 PRINT '=== G1 - Conservation du volume ===';
--- Attendu : n_source = n_fait = 3 077 750.
+-- Attendu : n_source = n_fait = 3 667 714  (passe A : 3 077 750).
 -- ⚠️ L'ancienne version portait "WHERE line_id = NULL", toujours
 --    faux en SQL : le controle renvoyait 0 quoi qu'il arrive
 --    (piege n°23). Clause supprimee.
@@ -99,8 +133,9 @@ GO
 
 
 PRINT '=== G2 - Coherence des compteurs additifs ===';
--- Attendu : theorique 2 884 396 | reel 2 751 469 | apparie 2 558 115
---           theo_seul 326 281   | reel_seul 193 354
+-- Attendu : theorique 3 428 704 | reel 3 251 371 | apparie 3 012 361
+--           theo_seul 416 343   | reel_seul 239 010
+-- (passe A : 2 884 396 | 2 751 469 | 2 558 115 | 326 281 | 193 354)
 -- Les deux recoupements DOIVENT tomber :
 --   apparie + theo_seul = theorique
 --   apparie + reel_seul = reel
@@ -116,7 +151,8 @@ GO
 
 
 PRINT '=== G3 - Taux, recalcules depuis la table de faits ===';
--- Attendu : appariement 88,69 % | non-appariement 11,31 % | ajout 7,03 %
+-- Attendu : appariement 87,86 % | non-appariement 12,14 % | ajout 7,35 %
+-- (passe A : 88,69 % | 11,31 % | 7,03 %)
 --
 -- ⚠️ VOCABULAIRE : "taux de non-appariement", JAMAIS "taux de
 --    suppression" (§19.A). C'est un indicateur COMPOSITE dont la
@@ -134,19 +170,20 @@ GO
 
 
 PRINT '=== G3b - LE KPI PRINCIPAL : taux de service conforme ===';
--- Attendu reseau : 65,06 %  |  ligne 25 : 64,40 %
--- ⚠️ NE PAS y attendre 88,69 % ni 95,86 % : ce sont les taux
+-- Attendu reseau : 64,64 %  |  ligne 25 : 65,00 %
+-- (passe A : 65,06 % | 64,40 %)
+-- ⚠️ NE PAS y attendre 87,86 % ni 95,61 % : ce sont les taux
 --    d'APPARIEMENT (G3), une mesure de couverture, pas de qualite.
 -- ABSENT de l'ancienne version alors que c'est LA mesure du memoire.
--- Fenetre STIB -60 / +180 s, rapportee au THEORIQUE : un passage non
+-- Fenetre -60 / +180 s (convention du projet), rapportee au THEORIQUE : un passage non
 -- apparie est non conforme au meme titre qu'un apparie hors fenetre.
 -- C'est ce qui rend les lignes comparables malgre un T variable.
 SELECT  taux_conformite = CAST(100.0 * SUM(CAST(nb_conforme  AS INT))
                                / NULLIF(SUM(CAST(nb_theorique AS INT)), 0) AS DECIMAL(5,2))
 FROM    dbo.fact_ecart;
 
--- Non-regression ligne 25 : DOIT valoir 64,40 % (conformite).
--- Son taux d'APPARIEMENT, lui, vaut 95,86 % - voir G3c.
+-- Non-regression ligne 25 : DOIT valoir 65,00 % (conformite).
+-- Son taux d'APPARIEMENT, lui, vaut 95,61 % - voir G3c.
 SELECT  taux_conformite_ligne_25 = CAST(100.0 * SUM(CAST(f.nb_conforme  AS INT))
                                         / NULLIF(SUM(CAST(f.nb_theorique AS INT)), 0) AS DECIMAL(5,2))
 FROM        dbo.fact_ecart AS f
@@ -156,8 +193,9 @@ GO
 
 
 PRINT '=== G3c - Non-regression : APPARIEMENT de la ligne 25 ===';
--- DOIT valoir 95,86 % (58 037 / 60 541). C'est le chiffre historique
--- du projet, mesure le 27/08. Il vit ICI, pas dans G3b.
+-- DOIT valoir 95,61 % (68 831 / 71 991). Passe A : 95,86 %
+-- (58 037 / 60 541), le chiffre historique du 27/08. Il vit ICI,
+-- pas dans G3b.
 SELECT  theoriques   = SUM(CAST(f.nb_theorique AS INT)),
         apparies     = SUM(CAST(f.nb_apparie   AS INT)),
         taux_appariement_ligne_25 = CAST(100.0 * SUM(CAST(f.nb_apparie   AS INT))
@@ -173,10 +211,9 @@ PRINT '=== G4 - Recours aux membres inconnus (-1) ===';
 -- VALIDES mais NON RESOLUES, ce qui est une information differente.
 -- Attendu :
 --   heure / ligne / arret  = 0          (toute autre valeur = alerte)
---   course                 = 193 354    (les reels seuls, par construction)
---   desserte               =  41 830    ⚠️ RESERVE OUVERTE, non expliquee
---   meteo                  = 1 225 665  (aout non collecte ; doit tomber
---                                        a 0 apres l'import meteo d'aout)
+--   course                 = 239 010    (les reels seuls, par construction)
+--   desserte               =  49 958    ⚠️ RESERVE OUVERTE, non expliquee
+--   meteo                  =       0    (aout recharge ; passe A : 1 225 665)
 SELECT  heure_inconnue    = SUM(CASE WHEN heure_sk    = -1 THEN 1 ELSE 0 END),
         ligne_inconnue    = SUM(CASE WHEN ligne_sk    = -1 THEN 1 ELSE 0 END),
         arret_inconnu     = SUM(CASE WHEN arret_sk    = -1 THEN 1 ELSE 0 END),
@@ -193,9 +230,10 @@ GO
 
 
 PRINT '=== G5 - Resolution du sens des reels non apparies ===';
--- Attendu : racine 147 031 | destination 43 476 | non resolu 2 847
+-- Attendu : racine 183 604 | destination 52 441 | non resolu 2 965
+-- (passe A : 147 031 | 43 476 | 2 847)
 -- Le niveau 3 ne servait JAMAIS sur la ligne 25 ; il sert au reseau.
--- Les 2 847 non resolus alimentent desserte_sk = -1 (voir G4).
+-- Les 2 965 non resolus alimentent desserte_sk = -1 (voir G4).
 SELECT      methode_resolution, n = COUNT(*)
 FROM        dbo.fact_ecart
 WHERE       statut_appariement = 'reel_non_apparie'
@@ -262,9 +300,11 @@ PRINT '=== G8 - Non-regression spatiale : PATRIE <-> MEISER ===';
      moyenne des retards par arret - ce sont deux populations
      differentes (piege n°52).
 
-  ATTENDU : +24 s de mediane DANS LES DEUX SENS.
-            ~1 102 courses en direction 0, ~1 184 en direction 1.
-  Si ce chiffre bouge, une jointure a change le sens des donnees.
+  ATTENDU : +24 s (dir. 0, 1 297 courses) et +22 s (dir. 1, 1 403
+            courses). Passe A : +24 s dans les deux sens, ~1 102 et
+            ~1 184 courses.
+  Si ces chiffres bougent sans changement de periode, une jointure a
+  change le sens des donnees.
 ----------------------------------------------------------------------------*/
 ;WITH passages AS (
     SELECT      f.course_sk, f.date_sk,
@@ -327,7 +367,7 @@ WHERE       NOT EXISTS (
 GROUP BY    f.date_sk
 ORDER BY    f.date_sk;
 
--- Et le compte de jours doit egaler celui de wrk_jours (44 en passe A).
+-- Et le compte de jours doit egaler celui de wrk_jours (52 ; 44 en passe A).
 SELECT  jours_dans_le_fait = COUNT(DISTINCT date_sk) FROM dbo.fact_ecart;
 SELECT  jours_dans_wrk_jours = COUNT(*)              FROM dbo.wrk_jours;
 GO
@@ -337,14 +377,15 @@ PRINT '=== G10 - Classement des lignes par taux de conformite ===';
 -- Pas un controle mais une PHOTOGRAPHIE, a conserver d'un rejeu a
 -- l'autre. C'est la matiere de la question business "quelles lignes
 -- produisent l'offre annoncee ?".
--- ⚠️ Exclure de tout classement publie : 69 (hors perimetre), 72
---    (4 900 theoriques, intervalle median d'une heure), et les
---    lignes M1 / M5 (526 et 1 141 theoriques - service residuel,
---    sans rapport avec le metro 1 et 5).
+-- ⚠️ Classement publie : les lignes avec dim_ligne.dans_classement = 1
+--    (regle de 62 : presence les 7 premiers ET les 7 derniers jours).
+--    Exclues : M1, M5, T7, 35. La 69 est hors perimetre (absente ici).
+--    La 72 (une course par heure) RESTE classee : ligne reguliere a
+--    basse frequence, pas un service partiel.
 -- ⚠️ CLASSER SUR LA CONFORMITE, pas sur l'appariement : ce dernier
 --    mesure ce que la methode retrouve, pas ce que la STIB produit.
--- Lecture du 03/09 : le haut du classement est occupe par le METRO
---    (1 -> 90,20 % | 5 -> 89,19 % | 6 -> 84,00 % | 2 -> 82,49 %),
+-- Lecture du 26/09 (52 jours) : le haut du classement est occupe par
+--    le METRO (1 -> 90,52 % | 5 -> 89,41 % | 6 -> 83,54 % | 2 -> 82,45 %),
 --    le bas presque exclusivement par le BUS. Matiere de Q1.
 --    ⚠️ Association, PAS causalite : le site propre est un facteur
 --    de confusion evident du mode.

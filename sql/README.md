@@ -90,7 +90,7 @@ experiments/   sensitivity test of the quality filters (not part of the run)
 | Script | Builds | Why it matters |
 |---|---|---|
 | `70_analyse_spatiale` | `int_profil_arret`, `int_segment` | Delay profile along each route and time lost per segment (Zoom page) |
-| `93_checks_fact_ecart` | Nothing (read only) | Non-regression checks on the fact table |
+| `93_checks_fact_ecart` | Nothing (read only) | Checks on the fact table, with the expected values of the current run (see [Checks](#checks)) |
 | `94_decomposition_kpi` | Nothing (read only) | Answers "what is in the 35 % that is not on time?": the cascade (part A) and the causes of unmatched stop events (part B) |
 | `99_backup` | `.bak` files | Backup of the database, mainly for the irreproducible real-time data |
 | `experiments/46_sensibilite_filtres` | `int_appariement_sensib` | Cost of the quality filters on the matching rate (development phase, line 25). Does not touch the main pipeline |
@@ -120,4 +120,16 @@ experiments/   sensitivity test of the quality filters (not part of the run)
 | On time | 2,216,461 (**64.64 %**) |
 | Not matched | 416,343 (12.14 %) |
 
-`94_decomposition_kpi` reproduces these figures. The reference values written in the header of `93_checks_fact_ecart` are those of the earlier 44-day run.
+`93_checks_fact_ecart` and `94_decomposition_kpi` reproduce these figures. The header of 93 also keeps the values of the earlier 44-day run, for comparison.
+
+## Checks
+
+The checks do not say whether 64.64 % is the "true" punctuality: that figure depends on choices (window, tolerance, filters), which are discussed in [docs/decisions.md](../docs/decisions.md). They verify that the pipeline **applies those choices correctly**. There are three kinds:
+
+| Kind | What it tests | Examples | If it fails |
+|---|---|---|---|
+| **Invariants** | Properties true by construction, whatever the choices | Matched + scheduled only = scheduled; the four categories add up to 100 %; no stop, line or time slot unresolved; every date of the fact table is in the analysis period | It is a bug |
+| **Reproducibility** | Same data and same choices give the same figures | Network and line 25 rates, number of unknown members, Patrie to Meiser segment | Something changed in the data or in a script |
+| **Plausibility** | Values within an expected range | Share of stop events seen in a single cycle (about 3 %) | An alarm to investigate, not a proof |
+
+Most scripts also end with their own checks. The `Cascade check` measure in Power BI repeats the main invariant under any filter of the report.

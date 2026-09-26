@@ -28,7 +28,7 @@ The report answers three business questions:
 | Stop events in the fact table | 3.67 million |
 | Lines ranked | 71 of 92 |
 
-Every scheduled stop event falls into exactly one category, measured against the STIB punctuality window (60 s early to 180 s late):
+Every scheduled stop event falls into exactly one category, measured against a punctuality window of 60 s early to 180 s late:
 
 | Scheduled stop events | Share |
 |---|---|
@@ -37,9 +37,9 @@ Every scheduled stop event falls into exactly one category, measured against the
 | Late (more than 180 s) | 5.5 % |
 | Not found in the real-time feed | 12.1 % |
 
-**Early running matters as much as late running.** Early departures are a bigger problem for passengers than late ones: someone who arrives on time at the stop misses the vehicle. The STIB punctuality window reflects this (60 s tolerated early, 180 s late). The report shows that the distribution of delays is roughly centred on zero; what makes early running weigh so much in the result is the asymmetry of the norm, not an actual tendency to run early.
+**Early running matters as much as late running.** Early departures are a bigger problem for passengers than late ones: someone who arrives on time at the stop misses the vehicle. The punctuality window used here reflects this (60 s tolerated early, 180 s late). The report shows that the distribution of delays is roughly centred on zero; what makes early running weigh so much in the result is the asymmetry of the norm, not an actual tendency to run early.
 
-**A time loss can be a timetable problem.** On tram line 25, the section Patrie to Meiser loses about 24 seconds (median) in both directions, with an ordinary spread. A systematic loss with normal dispersion points to a **schedule calibration** issue rather than congestion or unreliability, which is a different, and cheaper, fix.
+**A time loss can be a timetable problem.** On tram line 25, the section Patrie to Meiser loses 22 to 24 seconds (median, depending on the direction), with an ordinary spread. A systematic loss with normal dispersion points to a **schedule calibration** issue rather than congestion or unreliability, which is a different, and cheaper, fix.
 
 ## The report
 
@@ -111,10 +111,17 @@ sql/                    the whole pipeline, one script per object, run in numeri
   90_checks/              non-regression checks, KPI decomposition, backup
   experiments/            sensitivity test of the quality filters (development phase, line 25)
 powerbi/                Power BI project (PBIP)
-docs/                   screenshots and PDF export of the report
+docs/                   documentation, screenshots and PDF export of the report
 ```
 
 Every SQL script starts with a header explaining **what** it builds, **why** it is built that way and how it was **checked**. Comments are in French.
+
+## Documentation
+
+- [Methodology](docs/methodology.md): how the on-time rate is built, from raw predictions to the four categories
+- [Data model](docs/data_model.md): the star schema, its grain and design choices
+- [Decisions](docs/decisions.md): the choices that shape the result, and the hypotheses tested and rejected
+- [SQL pipeline](sql/README.md): run order and role of each script
 
 ## Reproducibility
 

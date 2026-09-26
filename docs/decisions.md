@@ -95,7 +95,7 @@ The raw result (17.7 % early, 5.5 % late) suggests it. On a symmetric window, on
 Rejected: the timing points in the GTFS do not coincide with the points where time is lost.
 
 **The same section: the loss is a composition effect (different trips at different stops).**
-Rejected: restricted to the trips that serve all stops, the profile is almost identical. The result (+24 s median in both directions, on about 1,100 trips each) was confirmed through the full star schema.
+Rejected: restricted to the trips that serve all stops, the profile is almost identical. The result was confirmed through the full star schema and holds over the full period: +24 s and +22 s median depending on the direction, on 1,300 to 1,400 trips each.
 
 **Early running on line 25 comes from a shift in the matching (a missing vehicle makes the next one look early).**
 Measured and insufficient: it explains about 5 % of the early stop events *(development)*.

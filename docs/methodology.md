@@ -6,7 +6,7 @@ This page explains how the on-time rate is built, from the raw real-time feed to
 
 **Unit of measure: the scheduled stop event**, one vehicle due at one stop at one time according to the published timetable (GTFS).
 
-**Indicator: the on-time rate**, the share of scheduled stop events served within the STIB punctuality window, **from 60 s early to 180 s late**.
+**Indicator: the on-time rate**, the share of scheduled stop events served within a punctuality window **from 60 s early to 180 s late**. The window is a convention of this project, chosen because an early departure is worse for a passenger than a late one (see [decisions.md](decisions.md)).
 
 ```
 on-time rate = scheduled stop events served on time / scheduled stop events (observable)
@@ -72,7 +72,7 @@ Without a trip identifier, each observed stop event has to be paired with the sc
 tolerance = 10th percentile of scheduled headways / 2, between 120 s and 300 s
 ```
 
-The 10th percentile describes the moments when vehicles are closest together, which is when confusion is most likely. The values obtained range from 180 s to 300 s. They are stored in a table, so they cannot change silently if the timetable is reloaded.
+The 10th percentile describes the moments when vehicles are closest together, which is when confusion is most likely. No line gets less than 180 s, and most lines reach the 300 s cap. They are stored in a table, so they cannot change silently if the timetable is reloaded.
 
 **Algorithm: reciprocal nearest neighbour, one-to-one.** At each iteration, each scheduled stop event picks its closest remaining observed one, and each observed stop event picks its closest remaining scheduled one. Only mutual choices are kept, then removed from the pool. The loop stops when no new pair is found. Ties are broken by identifiers, so the result is deterministic.
 
@@ -121,7 +121,7 @@ Three quarters of the not found stop events reflect the service. The remaining q
 
 - **Ranking of lines** (`62_dim_ligne_classement`). A line is ranked only if it runs in the first 7 **and** the last 7 days of the period. This excludes lines that appear or disappear during the period (summer works), without excluding lines that do not run on Sundays. Four lines are excluded this way (M1, M5, T7, 35), each checked against STIB works notices. They remain in every network total.
 - **Stops**. A stop's on-time rate is shown only above 200 scheduled stop events, so that a rarely served stop does not appear red or green by chance. The **stop-specific effect** compares the rate observed at a stop with the rate expected from the lines serving it (each line's rate over its whole route, weighted by its stop events at that stop). A negative effect means the stop does worse than its lines elsewhere.
-- **Segments** (`70_analyse_spatiale`). The time lost between two consecutive stops is the median gap between actual and scheduled running time, kept only for segments observed on at least 100 trips. A systematic loss with ordinary dispersion (for example tram 25, Patrie to Meiser, about +24 s in both directions) points to a timetable that allows too little time rather than to an unreliable section.
+- **Segments** (`70_analyse_spatiale`). The time lost between two consecutive stops is the median gap between actual and scheduled running time, kept only for segments observed on at least 100 trips. A systematic loss with ordinary dispersion (for example tram 25, Patrie to Meiser, +22 to +24 s depending on the direction) points to a timetable that allows too little time rather than to an unreliable section.
 
 Delays are summarised with **medians**, never means: the distributions are asymmetric and the deviations are censored at the tolerance.
 
@@ -132,4 +132,4 @@ Delays are summarised with **medians**, never means: the distributions are asymm
 - **Terminus arrivals** are not published by the API. Routes end at the last observed stop.
 - **Period.** One summer, including major roadworks, off-peak hours only (09:15 to 13:45). The results describe this period, not a typical year or peak hours.
 - **Missing days.** Five collection days are missing (4, 5, 6, 11 and 12 July).
-- **Unmapped stops.** 54 real-time stop codes have no GTFS equivalent (0.57 % of predictions), and five codes that first appeared after 19 August are not in the stop mapping. Both are excluded from the analysis.
+- **Unmapped stops.** 71 real-time stop codes are not in the stop mapping and are excluded (0.61 % of predictions). 66 of them have no equivalent in the published timetable, so there is no schedule to compare them with; most appear for only a few days, which suggests temporary stops. The other 5 do have a timetable equivalent but are missing from the mapping, which was built from the data available at the time. They represent 3,480 predictions (about 0.01 %), too few to justify rebuilding the whole pipeline.
